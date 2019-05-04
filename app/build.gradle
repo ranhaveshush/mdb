@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply from: "${project.rootDir}/config/gradle/moduleTasks.gradle"
+
+android {
+    compileSdkVersion versions.sdk.compile
+    defaultConfig {
+        applicationId "com.example.baseapp"
+        minSdkVersion versions.sdk.min
+        targetSdkVersion versions.sdk.target
+        versionCode versions.version_code
+        versionName versions.version_name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.core:core-ktx:$versions.core_ktx"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test:runner:$versions.runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+}
