@@ -6,6 +6,15 @@ apply plugin: 'kotlin-android-extensions'
 
 apply from: "${project.rootDir}/config/gradle/moduleTasks.gradle"
 
+if (file('local.gradle').exists()) {
+    apply from: 'local.gradle'
+} else {
+    throw new GradleException(
+            "${project.rootDir}/local.gradle file doesn't exists."
+                    + "\nCreate a local.gradle file from the local.gradle.example file."
+                    + "\nImportant: paste your TMDB api key there.")
+}
+
 android {
     compileSdkVersion versions.sdk.compile
     defaultConfig {

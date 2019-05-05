@@ -1,0 +1,14 @@
+android {
+    buildTypes {
+        debug {
+            buildConfigField 'String', 'TMDB_API_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'TMDB_API_KEY_NAME', '"api_key"'
+            buildConfigField 'String', 'TMDB_API_KEY_VALUE', '"<paste-your-tmdb-api-key-here>"'
+        }
+        release {
+            buildConfigField 'String', 'TMDB_API_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'TMDB_API_KEY_NAME', '"api_key"'
+            buildConfigField 'String', 'TMDB_API_KEY_VALUE', '"<paste-your-tmdb-api-key-here>"'
+        }
+    }
+}
