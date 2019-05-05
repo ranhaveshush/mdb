@@ -27,7 +27,7 @@ internal interface TmdbService {
     /**
      * Retrieve movie details for a given movie ID.
      *
-     * @param movieId The TMDB movie identifier.
+     * @param movieId The TMDb movie identifier.
      * @return
      */
     @GET("movie/{movie_id}")
@@ -48,7 +48,7 @@ internal interface TmdbService {
                 val originalRequest = it.request()
                 val originalUrl = originalRequest.url()
 
-                // Add TMDB's api key to every request.
+                // Add TMDb's api key to every request.
                 val newUrl = originalUrl.newBuilder()
                     .addQueryParameter(BuildConfig.TMDB_API_KEY_NAME, BuildConfig.TMDB_API_KEY_VALUE)
                     .build()

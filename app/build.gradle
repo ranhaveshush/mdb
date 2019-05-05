@@ -12,7 +12,7 @@ if (file('local.gradle').exists()) {
     throw new GradleException(
             "${project.rootDir}/local.gradle file doesn't exists."
                     + "\nCreate a local.gradle file from the local.gradle.example file."
-                    + "\nImportant: paste your TMDB api key there.")
+                    + "\nImportant: paste your TMDb api key there.")
 }
 
 android {
