@@ -9,7 +9,7 @@ apply from: "${project.rootDir}/config/gradle/moduleTasks.gradle"
 android {
     compileSdkVersion versions.sdk.compile
     defaultConfig {
-        applicationId "com.example.baseapp"
+        applicationId "com.ranhaveshush.tmdb"
         minSdkVersion versions.sdk.min
         targetSdkVersion versions.sdk.target
         versionCode versions.version_code

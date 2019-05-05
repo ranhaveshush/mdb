@@ -1,2 +1,1 @@
-# base-app
-A basic app template.
+# TMDB App

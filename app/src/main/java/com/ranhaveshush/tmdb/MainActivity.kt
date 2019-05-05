@@ -1,4 +1,4 @@
-package com.example.baseapp
+package com.ranhaveshush.tmdb
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
