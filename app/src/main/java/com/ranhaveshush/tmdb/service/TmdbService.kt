@@ -3,6 +3,7 @@ package com.ranhaveshush.tmdb.service
 import com.ranhaveshush.tmdb.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.GET
@@ -48,6 +49,9 @@ internal interface TmdbService {
 
         private fun client(): OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(TmdbInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            })
             .build()
     }
 }
