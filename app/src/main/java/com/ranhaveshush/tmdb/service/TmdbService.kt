@@ -12,7 +12,10 @@ import retrofit2.http.Query
 /**
  * [The Movie Database API](https://developers.themoviedb.org/3/getting-started/search-and-query-for-details) service.
  *
- * The Movie Database (TMDb) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDb's strong international focus and breadth of data is largely unmatched and something we're incredibly proud of. Put simply, we live and breathe community and that's precisely what makes us different.
+ * The Movie Database (TMDb) is a community built movie and TV database.
+ * Every piece of data has been added by our amazing community dating back to 2008.
+ * TMDb's strong international focus and breadth of data is largely unmatched and something we're incredibly proud of.
+ * Put simply, we live and breathe community and that's precisely what makes us different.
  */
 internal interface TmdbService {
     /**
@@ -44,18 +47,7 @@ internal interface TmdbService {
             .build()
 
         private fun client(): OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor {
-                val originalRequest = it.request()
-                val originalUrl = originalRequest.url()
-
-                // Add TMDb's api key to every request.
-                val newUrl = originalUrl.newBuilder()
-                    .addQueryParameter(BuildConfig.TMDB_API_KEY_NAME, BuildConfig.TMDB_API_KEY_VALUE)
-                    .build()
-
-                val newRequest = originalRequest.newBuilder().url(newUrl).build()
-
-                it.proceed(newRequest)
-            }.build()
+            .addInterceptor(TmdbInterceptor())
+            .build()
     }
 }
