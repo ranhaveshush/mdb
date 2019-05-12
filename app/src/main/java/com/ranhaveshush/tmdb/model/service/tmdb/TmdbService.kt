@@ -1,11 +1,12 @@
-package com.ranhaveshush.tmdb.service
+package com.ranhaveshush.tmdb.model.service.tmdb
 
 import com.ranhaveshush.tmdb.BuildConfig
+import com.ranhaveshush.tmdb.model.dto.MovieDTO
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -18,33 +19,23 @@ import retrofit2.http.Query
  * TMDb's strong international focus and breadth of data is largely unmatched and something we're incredibly proud of.
  * Put simply, we live and breathe community and that's precisely what makes us different.
  */
-internal interface TmdbService {
-    /**
-     * Search for a movie by a given query string.
-     *
-     * @param query The query string, search keywords separated with +.
-     * @return
-     */
+interface TmdbService {
     @GET("search/movie")
-    fun search(@Query("query") query: String): Call<ResponseBody>
+    fun search(@Query("query") query: String): Call<List<MovieDTO>>
 
-    /**
-     * Retrieve movie details for a given movie ID.
-     *
-     * @param movieId The TMDb movie identifier.
-     * @return
-     */
     @GET("movie/{movie_id}")
-    fun getDetails(@Path("movie_id") movieId: Int): Call<ResponseBody>
+    fun getDetails(@Path("movie_id") movieId: Int): Call<MovieDTO>
 
-    companion object TmdbServiceImpl {
+    companion object {
+        private var SERVICE: TmdbService? = null
+
         fun get(): TmdbService = SERVICE
-
-        private val SERVICE: TmdbService = retrofit().create(TmdbService::class.java)
+            ?: retrofit().create(TmdbService::class.java)
 
         private fun retrofit(): Retrofit = Retrofit.Builder()
             .client(client())
             .baseUrl(BuildConfig.TMDB_API_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
         private fun client(): OkHttpClient = OkHttpClient.Builder()

@@ -1,11 +1,11 @@
-package com.ranhaveshush.tmdb.service
+package com.ranhaveshush.tmdb.model.service.tmdb
 
 import com.ranhaveshush.tmdb.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 
 /**
- * A TMDb [okhttp](https://square.github.io/okhttp/) [Interceptor].
+ * A TMDb [OkHttp](https://square.github.io/okhttp/) [Interceptor].
  *
  * Appends the TMDb api key query parameter name and value to every HTTP request.
  */

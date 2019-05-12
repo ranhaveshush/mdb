@@ -48,6 +48,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
     // Test
     testImplementation "junit:junit:$versions.junit"
