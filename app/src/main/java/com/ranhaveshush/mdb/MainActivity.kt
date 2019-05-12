@@ -1,4 +1,4 @@
-package com.ranhaveshush.tmdb
+package com.ranhaveshush.mdb
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

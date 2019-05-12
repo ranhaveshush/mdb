@@ -18,7 +18,7 @@ if (file('local.gradle').exists()) {
 android {
     compileSdkVersion versions.sdk.compile
     defaultConfig {
-        applicationId "com.ranhaveshush.tmdb"
+        applicationId "com.ranhaveshush.mdb"
         minSdkVersion versions.sdk.min
         targetSdkVersion versions.sdk.target
         versionCode versions.version_code

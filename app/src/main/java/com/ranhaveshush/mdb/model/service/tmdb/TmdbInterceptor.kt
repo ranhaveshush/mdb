@@ -1,6 +1,6 @@
-package com.ranhaveshush.tmdb.model.service.tmdb
+package com.ranhaveshush.mdb.model.service.tmdb
 
-import com.ranhaveshush.tmdb.BuildConfig
+import com.ranhaveshush.mdb.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 

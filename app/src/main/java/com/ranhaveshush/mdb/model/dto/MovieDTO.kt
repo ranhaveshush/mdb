@@ -1,4 +1,4 @@
-package com.ranhaveshush.tmdb.model.dto
+package com.ranhaveshush.mdb.model.dto
 
 import com.squareup.moshi.Json
 

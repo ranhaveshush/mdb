@@ -1,9 +1,9 @@
-package com.ranhaveshush.tmdb.model
+package com.ranhaveshush.mdb.model
 
-import com.ranhaveshush.tmdb.model.dto.MovieDTO
-import com.ranhaveshush.tmdb.model.service.MovieService
-import com.ranhaveshush.tmdb.model.service.MovieServiceFactory
-import com.ranhaveshush.tmdb.model.service.MovieServiceProvider
+import com.ranhaveshush.mdb.model.dto.MovieDTO
+import com.ranhaveshush.mdb.model.service.MovieService
+import com.ranhaveshush.mdb.model.service.MovieServiceFactory
+import com.ranhaveshush.mdb.model.service.MovieServiceProvider
 import retrofit2.Call
 import retrofit2.Response
 

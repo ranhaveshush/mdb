@@ -1,4 +1,4 @@
-package com.ranhaveshush.tmdb.model.service
+package com.ranhaveshush.mdb.model.service
 
 /**
  * The movie service provider identifier.

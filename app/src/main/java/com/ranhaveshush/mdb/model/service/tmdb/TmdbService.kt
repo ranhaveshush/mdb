@@ -1,7 +1,7 @@
-package com.ranhaveshush.tmdb.model.service.tmdb
+package com.ranhaveshush.mdb.model.service.tmdb
 
-import com.ranhaveshush.tmdb.BuildConfig
-import com.ranhaveshush.tmdb.model.dto.MovieDTO
+import com.ranhaveshush.mdb.BuildConfig
+import com.ranhaveshush.mdb.model.dto.MovieDTO
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call

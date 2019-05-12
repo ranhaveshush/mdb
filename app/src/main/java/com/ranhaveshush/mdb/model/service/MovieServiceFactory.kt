@@ -1,7 +1,7 @@
-package com.ranhaveshush.tmdb.model.service
+package com.ranhaveshush.mdb.model.service
 
-import com.ranhaveshush.tmdb.model.service.tmdb.TmdbService
-import com.ranhaveshush.tmdb.model.service.tmdb.TmdbServiceAdapter
+import com.ranhaveshush.mdb.model.service.tmdb.TmdbService
+import com.ranhaveshush.mdb.model.service.tmdb.TmdbServiceAdapter
 
 /**
  * The movie service factory.

@@ -1,6 +1,6 @@
-package com.ranhaveshush.tmdb.model.service
+package com.ranhaveshush.mdb.model.service
 
-import com.ranhaveshush.tmdb.model.dto.MovieDTO
+import com.ranhaveshush.mdb.model.dto.MovieDTO
 import retrofit2.Call
 
 /**
