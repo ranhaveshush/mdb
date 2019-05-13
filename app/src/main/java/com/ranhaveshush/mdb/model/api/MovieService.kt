@@ -1,4 +1,4 @@
-package com.ranhaveshush.mdb.model.service
+package com.ranhaveshush.mdb.model.api
 
 import com.ranhaveshush.mdb.model.dto.MovieDTO
 import retrofit2.Call

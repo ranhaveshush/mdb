@@ -1,4 +1,4 @@
-package com.ranhaveshush.mdb.model.service.tmdb
+package com.ranhaveshush.mdb.model.api.tmdb
 
 import com.ranhaveshush.mdb.BuildConfig
 import okhttp3.Interceptor
