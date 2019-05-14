@@ -12,4 +12,3 @@ object ApiFactory {
             ApiProvider.TMDb -> TmdbApi
         }
 }
-

@@ -2,34 +2,42 @@ package com.ranhaveshush.mdb.model
 
 import com.ranhaveshush.mdb.model.api.ClientApi
 import com.ranhaveshush.mdb.model.dto.MovieDTO
-import retrofit2.Call
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 /**
  * The movie repository an abstraction between the movie data sources and the app.
  */
-class MovieRepository(private val clientApi: ClientApi) {
-    fun search(query: String, onResult: (isSuccess: Boolean, response: Response<List<MovieDTO>>?) -> Unit) {
-        clientApi.getMovieService().search(query).enqueue(object : retrofit2.Callback<List<MovieDTO>> {
-            override fun onResponse(call: Call<List<MovieDTO>>, response: Response<List<MovieDTO>>) {
-                if (response.isSuccessful) onResult(true, response) else onResult(false, null)
-            }
+class MovieRepository(private val client: ClientApi) {
+    private val defaultScope: CoroutineScope = DefaultScope()
+    private val mainScope: CoroutineScope = MainScope()
 
-            override fun onFailure(call: Call<List<MovieDTO>>, t: Throwable) {
-                onResult(false, null)
+    fun search(query: String, onResult: (isSuccess: Boolean, data: List<MovieDTO>?) -> Unit) {
+        defaultScope.launch {
+            try {
+                val movies: List<MovieDTO> = client.getMovieService().search(query).await()
+                mainScope.launch { onResult(true, movies) }
+            } catch (e: IOException) {
+                mainScope.launch { onResult(false, null) }
             }
-        })
+        }
     }
 
-    fun getDetails(movieId: Int, onResult: (isSuccess: Boolean, response: Response<MovieDTO>?) -> Unit) {
-        clientApi.getMovieService().getDetails(movieId).enqueue(object : retrofit2.Callback<MovieDTO> {
-            override fun onResponse(call: Call<MovieDTO>, response: Response<MovieDTO>) {
-                if (response.isSuccessful) onResult(true, response) else onResult(false, null)
+    fun getDetails(movieId: Int, onResult: (isSuccess: Boolean, data: MovieDTO?) -> Unit) {
+        defaultScope.launch {
+            try {
+                val movie: MovieDTO = client.getMovieService().getDetails(movieId).await()
+                mainScope.launch { onResult(true, movie) }
+            } catch (e: IOException) {
+                mainScope.launch { onResult(false, null) }
             }
-
-            override fun onFailure(call: Call<MovieDTO>, t: Throwable) {
-                onResult(false, null)
-            }
-        })
+        }
     }
+
+    @Suppress("FunctionName")
+    private fun DefaultScope(): CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 }

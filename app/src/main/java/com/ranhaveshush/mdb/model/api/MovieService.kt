@@ -1,7 +1,7 @@
 package com.ranhaveshush.mdb.model.api
 
 import com.ranhaveshush.mdb.model.dto.MovieDTO
-import retrofit2.Call
+import kotlinx.coroutines.Deferred
 
 /**
  * The movie service interface, implemented by the specific movie services.
@@ -13,7 +13,7 @@ interface MovieService {
      * @param query The query string.
      * @return A list of movie details returned by the search result.
      */
-    fun search(query: String): Call<List<MovieDTO>>
+    fun search(query: String): Deferred<List<MovieDTO>>
 
     /**
      * Retrieve movie details for a given movie ID.
@@ -21,5 +21,5 @@ interface MovieService {
      * @param movieId The movie identifier.
      * @return The movie details.
      */
-    fun getDetails(movieId: Int): Call<MovieDTO>
+    fun getDetails(movieId: Int): Deferred<MovieDTO>
 }

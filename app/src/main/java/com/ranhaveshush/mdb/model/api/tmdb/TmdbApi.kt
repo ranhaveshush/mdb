@@ -1,5 +1,6 @@
 package com.ranhaveshush.mdb.model.api.tmdb
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.ranhaveshush.mdb.BuildConfig
 import com.ranhaveshush.mdb.model.api.ClientApi
 import com.ranhaveshush.mdb.model.api.MovieService
@@ -34,6 +35,7 @@ object TmdbApi : ClientApi {
         .client(client())
         .baseUrl(BuildConfig.TMDB_API_URL)
         .addConverterFactory(MoshiConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
     private fun client(): OkHttpClient = OkHttpClient.Builder()
