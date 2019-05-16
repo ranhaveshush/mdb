@@ -10,5 +10,4 @@ import kotlinx.coroutines.Deferred
  */
 class MoviesRepository(private val client: ClientApi) {
     fun search(query: String): Deferred<List<MovieDTO>> = client.getMovieService().search(query)
-
 }
