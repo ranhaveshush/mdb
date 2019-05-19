@@ -7,6 +7,7 @@ import com.ranhaveshush.mdb.model.api.ApiFactory
 import com.ranhaveshush.mdb.model.api.ApiProvider
 import com.ranhaveshush.mdb.model.repository.MoviesRepository
 import com.ranhaveshush.mdb.model.vo.Movie
+import com.ranhaveshush.mdb.model.vo.Resource
 
 /**
  * A movies [ViewModel] implementation.
@@ -16,5 +17,5 @@ class MoviesViewModel : ViewModel() {
     private val client = ApiFactory.get(ApiProvider.TMDb)
     private val repository = MoviesRepository(viewModelScope, client)
 
-    fun search(query: String): LiveData<List<Movie>> = repository.search(query)
+    fun search(query: String): LiveData<Resource<List<Movie>>> = repository.search(query)
 }

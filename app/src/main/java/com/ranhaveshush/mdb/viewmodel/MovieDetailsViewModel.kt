@@ -7,6 +7,7 @@ import com.ranhaveshush.mdb.model.api.ApiFactory
 import com.ranhaveshush.mdb.model.api.ApiProvider
 import com.ranhaveshush.mdb.model.repository.MovieDetailsRepository
 import com.ranhaveshush.mdb.model.vo.Movie
+import com.ranhaveshush.mdb.model.vo.Resource
 
 /**
  * A movie details [ViewModel] implementation.
@@ -16,5 +17,5 @@ class MovieDetailsViewModel : ViewModel() {
     private val client = ApiFactory.get(ApiProvider.TMDb)
     private val repository = MovieDetailsRepository(viewModelScope, client)
 
-    fun getDetails(movieId: Int): LiveData<Movie> = repository.getDetails(movieId)
+    fun getDetails(movieId: Int): LiveData<Resource<Movie>> = repository.getDetails(movieId)
 }
