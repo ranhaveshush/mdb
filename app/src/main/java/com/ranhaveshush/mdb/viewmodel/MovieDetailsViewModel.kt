@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ranhaveshush.mdb.model.api.ApiFactory
 import com.ranhaveshush.mdb.model.api.ApiProvider
-import com.ranhaveshush.mdb.model.dto.MovieDTO
+import com.ranhaveshush.mdb.model.vo.Movie
 import com.ranhaveshush.mdb.model.repository.MovieDetailsRepository
 import kotlinx.coroutines.launch
 
@@ -18,9 +18,9 @@ class MovieDetailsViewModel : ViewModel() {
     private val client = ApiFactory.get(ApiProvider.TMDb)
     private val repository = MovieDetailsRepository(client)
 
-    private val movieLiveData = MutableLiveData<MovieDTO>()
+    private val movieLiveData = MutableLiveData<Movie>()
 
-    fun getDetails(movieId: Int): LiveData<MovieDTO> {
+    fun getDetails(movieId: Int): LiveData<Movie> {
         viewModelScope.launch {
             val movie = repository.getDetails(movieId).await()
             movieLiveData.postValue(movie)

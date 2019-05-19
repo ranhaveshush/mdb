@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ranhaveshush.mdb.model.api.ApiFactory
 import com.ranhaveshush.mdb.model.api.ApiProvider
-import com.ranhaveshush.mdb.model.dto.MovieDTO
+import com.ranhaveshush.mdb.model.vo.Movie
 import com.ranhaveshush.mdb.model.repository.MoviesRepository
 import kotlinx.coroutines.launch
 
@@ -18,9 +18,9 @@ class MoviesViewModel : ViewModel() {
     private val client = ApiFactory.get(ApiProvider.TMDb)
     private val repository = MoviesRepository(client)
 
-    private val moviesLiveData = MutableLiveData<List<MovieDTO>>()
+    private val moviesLiveData = MutableLiveData<List<Movie>>()
 
-    fun search(query: String): LiveData<List<MovieDTO>> {
+    fun search(query: String): LiveData<List<Movie>> {
         viewModelScope.launch {
             val movies = repository.search(query).await()
             moviesLiveData.postValue(movies)

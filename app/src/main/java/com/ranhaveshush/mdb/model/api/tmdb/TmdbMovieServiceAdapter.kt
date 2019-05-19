@@ -1,6 +1,6 @@
 package com.ranhaveshush.mdb.model.api.tmdb
 
-import com.ranhaveshush.mdb.model.dto.MovieDTO
+import com.ranhaveshush.mdb.model.vo.Movie
 import com.ranhaveshush.mdb.model.api.MovieService
 import kotlinx.coroutines.Deferred
 
@@ -14,6 +14,6 @@ import kotlinx.coroutines.Deferred
  * @param delegate The [TmdbMovieService] interface implementation, to delegate calls to.
  */
 class TmdbMovieServiceAdapter(private val delegate: TmdbMovieService) : MovieService {
-    override fun search(query: String): Deferred<List<MovieDTO>> = delegate.search(query)
-    override fun getDetails(movieId: Int): Deferred<MovieDTO> = delegate.getDetails(movieId)
+    override fun search(query: String): Deferred<List<Movie>> = delegate.search(query)
+    override fun getDetails(movieId: Int): Deferred<Movie> = delegate.getDetails(movieId)
 }

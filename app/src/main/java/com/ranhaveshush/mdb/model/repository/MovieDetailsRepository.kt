@@ -1,7 +1,7 @@
 package com.ranhaveshush.mdb.model.repository
 
 import com.ranhaveshush.mdb.model.api.ClientApi
-import com.ranhaveshush.mdb.model.dto.MovieDTO
+import com.ranhaveshush.mdb.model.vo.Movie
 import kotlinx.coroutines.Deferred
 
 /**
@@ -9,5 +9,5 @@ import kotlinx.coroutines.Deferred
  * An abstraction layer between the movie details data sources and the app.
  */
 class MovieDetailsRepository(private val client: ClientApi) {
-    fun getDetails(movieId: Int): Deferred<MovieDTO> = client.getMovieService().getDetails(movieId)
+    fun getDetails(movieId: Int): Deferred<Movie> = client.getMovieService().getDetails(movieId)
 }

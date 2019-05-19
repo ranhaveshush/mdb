@@ -1,11 +1,11 @@
-package com.ranhaveshush.mdb.model.dto
+package com.ranhaveshush.mdb.model.vo
 
 import com.squareup.moshi.Json
 
 /**
- * The movie details object.
+ * The movie details value object.
  */
-data class MovieDTO(
+data class Movie(
     @Json(name = "id") val id: Int,
     @Json(name = "title") val title: String,
     @Json(name = "overview") val overview: String,
