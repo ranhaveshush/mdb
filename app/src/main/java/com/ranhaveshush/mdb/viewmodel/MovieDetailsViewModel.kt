@@ -1,14 +1,12 @@
 package com.ranhaveshush.mdb.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ranhaveshush.mdb.model.api.ApiFactory
 import com.ranhaveshush.mdb.model.api.ApiProvider
-import com.ranhaveshush.mdb.model.vo.Movie
 import com.ranhaveshush.mdb.model.repository.MovieDetailsRepository
-import kotlinx.coroutines.launch
+import com.ranhaveshush.mdb.model.vo.Movie
 
 /**
  * A movie details [ViewModel] implementation.
@@ -16,16 +14,7 @@ import kotlinx.coroutines.launch
  */
 class MovieDetailsViewModel : ViewModel() {
     private val client = ApiFactory.get(ApiProvider.TMDb)
-    private val repository = MovieDetailsRepository(client)
+    private val repository = MovieDetailsRepository(viewModelScope, client)
 
-    private val movieLiveData = MutableLiveData<Movie>()
-
-    fun getDetails(movieId: Int): LiveData<Movie> {
-        viewModelScope.launch {
-            val movie = repository.getDetails(movieId).await()
-            movieLiveData.postValue(movie)
-        }
-
-        return movieLiveData
-    }
+    fun getDetails(movieId: Int): LiveData<Movie> = repository.getDetails(movieId)
 }
