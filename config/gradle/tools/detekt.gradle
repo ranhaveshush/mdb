@@ -1,7 +1,7 @@
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 detekt {
-    toolVersion = versions.plugin.detekt
+    toolVersion = version_detekt_gradle
     input = files(
             "src/main/java",
             "src/test/java",
