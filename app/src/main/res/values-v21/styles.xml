@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Widgets -->
+
+    <style name="Widget.App.Toolbar" parent="Base.Widget.App.Toolbar">
+        <item name="android:elevation">4dp</item>
+    </style>
+
+</resources>

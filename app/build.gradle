@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 apply from: "${project.rootDir}/config/gradle/moduleTasks.gradle"
@@ -45,9 +43,10 @@ dependencies {
     implementation "androidx.core:core-ktx:${version_core_ktx}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${version_kotlinx_coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${version_kotlinx_coroutines}"
-    // Android support
+    // Android UI
     implementation "androidx.appcompat:appcompat:${version_appcompat}"
     implementation "androidx.constraintlayout:constraintlayout:${version_constraintlayout}"
+    // Android lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:${version_lifecycle}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${version_lifecycle}"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${version_lifecycle}"
