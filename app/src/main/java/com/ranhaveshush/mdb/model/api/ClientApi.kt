@@ -5,4 +5,6 @@ package com.ranhaveshush.mdb.model.api
  */
 interface ClientApi {
     fun getMovieService(): MovieService
+
+    fun getConverterFactory(): Converter.Factory
 }

@@ -1,21 +1,37 @@
 package com.ranhaveshush.mdb.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ranhaveshush.mdb.model.api.ApiFactory
 import com.ranhaveshush.mdb.model.api.ApiProvider
 import com.ranhaveshush.mdb.model.repository.MovieDetailsRepository
-import com.ranhaveshush.mdb.model.vo.Movie
+import com.ranhaveshush.mdb.model.vo.MovieDetails
 import com.ranhaveshush.mdb.model.vo.Resource
+import kotlinx.coroutines.launch
 
 /**
  * A movie details [ViewModel] implementation.
  * An abstraction layer between the UI and the Model.
  */
+@Suppress("TooGenericExceptionCaught")
 class MovieDetailsViewModel : ViewModel() {
-    private val client = ApiFactory.get(ApiProvider.TMDb)
-    private val repository = MovieDetailsRepository(viewModelScope, client)
+    private val repository = MovieDetailsRepository(ApiProvider.TMDb)
 
-    fun getDetails(movieId: Int): LiveData<Resource<Movie>> = repository.getDetails(movieId)
+    private val movieLiveData = MutableLiveData<Resource<MovieDetails>>()
+
+    fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> {
+        movieLiveData.value = Resource.loading()
+
+        viewModelScope.launch {
+            try {
+                val movieDetails = repository.getDetails(movieId)
+                movieLiveData.postValue(Resource.success(movieDetails))
+            } catch (e: Exception) {
+                movieLiveData.postValue(Resource.error(e.message))
+            }
+        }
+
+        return movieLiveData
+    }
 }

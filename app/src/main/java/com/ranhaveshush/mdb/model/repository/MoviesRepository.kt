@@ -1,35 +1,39 @@
 package com.ranhaveshush.mdb.model.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.ranhaveshush.mdb.model.api.ApiProvider
 import com.ranhaveshush.mdb.model.api.ClientApi
-import com.ranhaveshush.mdb.model.vo.Movie
-import com.ranhaveshush.mdb.model.vo.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import com.ranhaveshush.mdb.model.api.ClientApiFactory
+import com.ranhaveshush.mdb.model.vo.MoviesPage
+import java.util.Locale
 
 /**
  * The movies repository.
- * An abstraction layer between the movies data sources and the app.
+ * An abstraction layer between movies data sources and the app.
  */
 class MoviesRepository(
-    private val coroutineScope: CoroutineScope,
-    private val client: ClientApi
+    provider: ApiProvider,
+    locale: Locale = Locale.getDefault()
 ) {
-    private val moviesLiveData = MutableLiveData<Resource<List<Movie>>>()
+    private val client: ClientApi = ClientApiFactory.get(provider)
+    private val region: String = locale.toString()
 
-    fun search(query: String): LiveData<Resource<List<Movie>>> {
-        moviesLiveData.value = Resource.loading()
+    suspend fun search(query: String, page: Int): MoviesPage {
+        val moviesPageResponse = client.getMovieService().search(query, page).await()
+        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
+    }
 
-        coroutineScope.launch {
-            try {
-                val movies = client.getMovieService().search(query).await()
-                moviesLiveData.postValue(Resource.success(movies))
-            } catch (e: Exception) {
-                moviesLiveData.postValue(Resource.error(e.message))
-            }
-        }
+    suspend fun getPopular(page: Int): MoviesPage {
+        val moviesPageResponse = client.getMovieService().getPopular(region, page).await()
+        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
+    }
 
-        return moviesLiveData
+    suspend fun getTopRated(page: Int): MoviesPage {
+        val moviesPageResponse = client.getMovieService().getTopRated(region, page).await()
+        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
+    }
+
+    suspend fun getUpcoming(page: Int): MoviesPage {
+        val moviesPageResponse = client.getMovieService().getUpcoming(region, page).await()
+        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
     }
 }
