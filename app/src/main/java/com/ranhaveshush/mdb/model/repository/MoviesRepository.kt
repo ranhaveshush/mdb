@@ -1,7 +1,6 @@
 package com.ranhaveshush.mdb.model.repository
 
 import com.ranhaveshush.mdb.model.api.ApiProvider
-import com.ranhaveshush.mdb.model.api.ClientApi
 import com.ranhaveshush.mdb.model.api.ClientApiFactory
 import com.ranhaveshush.mdb.model.vo.MoviesPage
 import java.util.Locale
@@ -12,10 +11,10 @@ import java.util.Locale
  */
 class MoviesRepository(
     provider: ApiProvider,
-    locale: Locale = Locale.getDefault()
+    private val locale: Locale = Locale.getDefault()
 ) {
-    private val client: ClientApi = ClientApiFactory.get(provider)
-    private val region: String = locale.toString()
+    private val client = ClientApiFactory.get(provider)
+    private val region = locale.toString()
 
     suspend fun search(query: String, page: Int): MoviesPage {
         val moviesPageResponse = client.getMovieService().search(query, page).await()
@@ -33,7 +32,9 @@ class MoviesRepository(
     }
 
     suspend fun getUpcoming(page: Int): MoviesPage {
-        val moviesPageResponse = client.getMovieService().getUpcoming(region, page).await()
+        // Upcoming endpoint doesn't support the region parameter with language and country,
+        // but just country.
+        val moviesPageResponse = client.getMovieService().getUpcoming(locale.country, page).await()
         return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
     }
 }

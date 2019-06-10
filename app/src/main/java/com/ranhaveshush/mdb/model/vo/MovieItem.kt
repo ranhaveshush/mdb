@@ -8,5 +8,5 @@ data class MovieItem(
     val title: String,
     val voteAverage: Float,
     val voteCount: Int,
-    val posterUrl: String
+    val posterUrl: String?
 ) : ValueObject

@@ -1,23 +1,25 @@
-package com.ranhaveshush.mdb.view
+package com.ranhaveshush.mdb.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ranhaveshush.mdb.R
+import com.ranhaveshush.mdb.model.vo.MoviesPage
+import com.ranhaveshush.mdb.model.vo.Resource
 import com.ranhaveshush.mdb.model.vo.Status
 import com.ranhaveshush.mdb.view.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.viewmodel.MoviesViewModel
 import kotlinx.android.synthetic.main.fragment_base.*
 import kotlinx.android.synthetic.main.fragment_movies_list.*
 
-class MoviesListFragment : Fragment() {
-    private lateinit var viewModel: MoviesViewModel
+abstract class MoviesListFragment : Fragment() {
+    protected lateinit var viewModel: MoviesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +34,15 @@ class MoviesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getTopRated(1).observe(this) {
+        getMoviesList(1).observe(this) {
             when (it.status) {
                 Status.LOADING -> progressBar_contentLoading.show()
                 Status.SUCCESS -> {
                     progressBar_contentLoading.hide()
                     recyclerView_movies.layoutManager = LinearLayoutManager(context)
-                    recyclerView_movies.adapter = MoviesAdapter(it.data!!.results)
+                    recyclerView_movies.adapter = MoviesAdapter(it.data!!.results) { movieId, movieTitle ->
+                        presentMovieDetails(movieId, movieTitle)
+                    }
                 }
                 Status.ERROR -> {
                     progressBar_contentLoading.hide()
@@ -48,11 +52,9 @@ class MoviesListFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    protected abstract fun getMoviesList(page: Int): LiveData<Resource<MoviesPage>>
 
-        findNavController().currentDestination?.label = "Top Rated"
-    }
+    protected abstract fun presentMovieDetails(movieId: Int, movieTitle: String)
 
     private fun showError(message: String?) {
         textView_errorMessage.text = message

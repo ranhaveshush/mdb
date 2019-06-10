@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -14,13 +14,15 @@
     <style name="Base.Widget"/>
     <style name="Base.Widget.App"/>
 
-    <style name="Base.Widget.App.Toolbar" parent="Widget.AppCompat.Toolbar">
+    <style name="Base.Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">?attr/colorPrimary</item>
-        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Dark</item>
     </style>
+
+    <style name="Base.Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored"/>
 
     <!-- Widgets -->
 
@@ -28,5 +30,10 @@
     <style name="Widget.App"/>
 
     <style name="Widget.App.Toolbar" parent="Base.Widget.App.Toolbar"/>
+
+    <style name="Widget.App.BottomNavigationView" parent="Base.Widget.App.BottomNavigationView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
 </resources>

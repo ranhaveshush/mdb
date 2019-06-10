@@ -1,4 +1,4 @@
-package com.ranhaveshush.mdb.view
+package com.ranhaveshush.mdb.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

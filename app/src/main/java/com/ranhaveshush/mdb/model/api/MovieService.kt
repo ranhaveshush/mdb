@@ -3,7 +3,7 @@ package com.ranhaveshush.mdb.model.api
 import kotlinx.coroutines.Deferred
 
 private const val DEFAULT_PAGE: Int = 1
-private const val DEFAULT_REGION: String = "en-US"
+private const val DEFAULT_REGION: String = "US"
 
 /**
  * The movie service interface, implemented by the specific movie services.

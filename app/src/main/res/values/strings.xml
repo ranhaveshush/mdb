@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MDb App</string>
+    <string name="menu_popular_movies">Popular</string>
+    <string name="menu_top_rated_movies">Top Rated</string>
+    <string name="menu_upcoming_movies">Upcoming</string>
+    <string name="fragment_popular_movies_title">Popular</string>
+    <string name="fragment_top_rated_movies_title">Top Rated</string>
+    <string name="fragment_upcoming_movies_title">Upcoming</string>
 </resources>

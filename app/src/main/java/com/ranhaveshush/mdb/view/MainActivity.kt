@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.ranhaveshush.mdb.R
-import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
+        NavigationUI.setupWithNavController(bottom_navigation, navController)
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
