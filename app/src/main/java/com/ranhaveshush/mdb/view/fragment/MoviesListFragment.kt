@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ranhaveshush.mdb.MainNavDirections
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.model.vo.MoviesPage
 import com.ranhaveshush.mdb.model.vo.Resource
@@ -54,7 +56,10 @@ abstract class MoviesListFragment : Fragment() {
 
     protected abstract fun getMoviesList(page: Int): LiveData<Resource<MoviesPage>>
 
-    protected abstract fun presentMovieDetails(movieId: Int, movieTitle: String)
+    private fun presentMovieDetails(movieId: Int, movieTitle: String) {
+        val action = MainNavDirections.actionGlobalMovieDetailsFragment(movieId, movieTitle)
+        findNavController().navigate(action)
+    }
 
     private fun showError(message: String?) {
         textView_errorMessage.text = message

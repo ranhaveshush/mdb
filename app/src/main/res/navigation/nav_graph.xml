@@ -2,31 +2,25 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/nav_graph"
+            android:id="@+id/main_nav"
             app:startDestination="@id/popular_movies_fragment">
 
     <fragment android:id="@+id/popular_movies_fragment"
               android:name="com.ranhaveshush.mdb.view.fragment.PopularMoviesFragment"
               android:label="@string/fragment_popular_movies_title"
               tools:layout="@layout/fragment_movies_list">
-        <action android:id="@+id/presentMovieDetailsAction"
-                app:destination="@+id/movie_details_fragment"/>
     </fragment>
 
     <fragment android:id="@+id/top_rated_movies_fragment"
               android:name="com.ranhaveshush.mdb.view.fragment.TopRatedMoviesFragment"
               android:label="@string/fragment_top_rated_movies_title"
               tools:layout="@layout/fragment_movies_list">
-        <action android:id="@+id/presentMovieDetailsAction"
-                app:destination="@+id/movie_details_fragment"/>
     </fragment>
 
     <fragment android:id="@+id/upcoming_movies_fragment"
               android:name="com.ranhaveshush.mdb.view.fragment.UpcomingMoviesFragment"
               android:label="@string/fragment_upcoming_movies_title"
               tools:layout="@layout/fragment_movies_list">
-        <action android:id="@+id/presentMovieDetailsAction"
-                app:destination="@+id/movie_details_fragment"/>
     </fragment>
 
     <fragment android:id="@+id/movie_details_fragment"
@@ -38,5 +32,8 @@
         <argument android:name="movieTitle"
                   app:argType="string"/>
     </fragment>
+
+    <action android:id="@+id/action_global_movie_details_fragment"
+            app:destination="@id/movie_details_fragment"/>
 
 </navigation>
