@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ranhaveshush.mdb.model.api.ApiProvider
-import com.ranhaveshush.mdb.model.repository.MovieDetailsRepository
-import com.ranhaveshush.mdb.model.vo.MovieDetails
-import com.ranhaveshush.mdb.model.vo.Resource
+import com.ranhaveshush.mdb.api.ApiProvider
+import com.ranhaveshush.mdb.repository.MovieDetailsRepository
+import com.ranhaveshush.mdb.vo.MovieDetails
+import com.ranhaveshush.mdb.vo.Resource
 import kotlinx.coroutines.launch
 
 /**
