@@ -6,7 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
- * A TMDb [MovieService][com.ranhaveshush.mdb.model.api.MovieService] implementation.
+ * A TMDb [MovieService][com.ranhaveshush.mdb.api.MovieService] implementation.
  */
 interface TmdbMovieService {
     @GET("search/movie")

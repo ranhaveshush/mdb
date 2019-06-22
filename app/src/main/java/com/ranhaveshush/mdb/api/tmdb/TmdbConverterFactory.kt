@@ -7,7 +7,7 @@ import com.ranhaveshush.mdb.vo.MoviesPage
 
 /**
  * A TMDb [Converter.Factory] implementation to convert TMDb response objects
- * to [value object][com.ranhaveshush.mdb.model.vo.ValueObject]'s.
+ * to [value object][com.ranhaveshush.mdb.vo.ValueObject]'s.
  */
 class TmdbConverterFactory : Converter.Factory {
     override fun moviesPageConverter(): Converter<Any, MoviesPage> =

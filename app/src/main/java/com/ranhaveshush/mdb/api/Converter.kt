@@ -6,7 +6,7 @@ import com.ranhaveshush.mdb.vo.MoviesPage
 
 /**
  * A converter interface, implemented by concrete Api providers
- * to convert concrete Api responses to [value object][com.ranhaveshush.mdb.model.vo.ValueObject]'s.
+ * to convert concrete Api responses to [value object][com.ranhaveshush.mdb.vo.ValueObject]'s.
  */
 interface Converter<F, T> {
     fun convert(value: F): T
