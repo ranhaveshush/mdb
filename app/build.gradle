@@ -59,6 +59,8 @@ dependencies {
     // AndroidX navigation
     implementation "androidx.navigation:navigation-fragment-ktx:${version_navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${version_navigation}"
+    // AndroidX paging
+    implementation "androidx.paging:paging-runtime-ktx:${version_paging}"
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:${version_retrofit}"
     implementation "com.squareup.retrofit2:converter-moshi:${version_retrofit}"
