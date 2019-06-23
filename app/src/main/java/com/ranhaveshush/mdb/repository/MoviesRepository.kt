@@ -1,40 +1,35 @@
 package com.ranhaveshush.mdb.repository
 
-import com.ranhaveshush.mdb.api.ApiProvider
-import com.ranhaveshush.mdb.api.ClientApiFactory
-import com.ranhaveshush.mdb.vo.MoviesPage
-import java.util.Locale
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import com.ranhaveshush.mdb.api.ApiClient
+import com.ranhaveshush.mdb.vo.MovieItem
 
 /**
  * The movies repository.
  * An abstraction layer between movies data sources and the app.
  */
-class MoviesRepository(
-    provider: ApiProvider,
-    private val locale: Locale = Locale.getDefault()
-) {
-    private val client = ClientApiFactory.get(provider)
-    private val region = locale.toString()
+class MoviesRepository(private val client: ApiClient) {
+    private val pageSize = 50
 
-    suspend fun search(query: String, page: Int): MoviesPage {
-        val moviesPageResponse = client.getMovieService().search(query, page).await()
-        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
+    fun search(query: String): LiveData<PagedList<MovieItem>> {
+        val dataSourceFactory = client.search(query)
+        return LivePagedListBuilder(dataSourceFactory, pageSize).build()
     }
 
-    suspend fun getPopular(page: Int): MoviesPage {
-        val moviesPageResponse = client.getMovieService().getPopular(region, page).await()
-        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
+    fun getPopular(): LiveData<PagedList<MovieItem>> {
+        val dataSourceFactory = client.getPopular()
+        return LivePagedListBuilder(dataSourceFactory, pageSize).build()
     }
 
-    suspend fun getTopRated(page: Int): MoviesPage {
-        val moviesPageResponse = client.getMovieService().getTopRated(region, page).await()
-        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
+    fun getTopRated(): LiveData<PagedList<MovieItem>> {
+        val dataSourceFactory = client.getTopRated()
+        return LivePagedListBuilder(dataSourceFactory, pageSize).build()
     }
 
-    suspend fun getUpcoming(page: Int): MoviesPage {
-        // Upcoming endpoint doesn't support the region parameter with language and country,
-        // but just country.
-        val moviesPageResponse = client.getMovieService().getUpcoming(locale.country, page).await()
-        return client.getConverterFactory().moviesPageConverter().convert(moviesPageResponse)
+    fun getUpcoming(): LiveData<PagedList<MovieItem>> {
+        val dataSourceFactory = client.getUpcoming()
+        return LivePagedListBuilder(dataSourceFactory, pageSize).build()
     }
 }

@@ -1,10 +1,9 @@
-package com.ranhaveshush.mdb.api.tmdb
+package com.ranhaveshush.mdb.api.tmdb.response
 
-import com.ranhaveshush.mdb.api.MovieDetailsResponse
 import com.squareup.moshi.Json
 
 /**
- * A TMDb [movie details response][MovieDetailsResponse] object.
+ * A TMDb movie details response object.
  */
 data class TmdbMovieDetailsResponse(
     @field:Json(name = "id") val id: Int,
@@ -16,4 +15,4 @@ data class TmdbMovieDetailsResponse(
     @field:Json(name = "vote_average") val voteAverage: Float,
     @field:Json(name = "vote_count") val voteCount: Int,
     @field:Json(name = "poster_path") val posterPath: String
-) : MovieDetailsResponse
+)

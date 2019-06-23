@@ -1,24 +1,13 @@
 package com.ranhaveshush.mdb.repository
 
-import com.ranhaveshush.mdb.api.ApiProvider
-import com.ranhaveshush.mdb.api.ClientApi
-import com.ranhaveshush.mdb.api.ClientApiFactory
+import androidx.lifecycle.LiveData
+import com.ranhaveshush.mdb.api.ApiClient
 import com.ranhaveshush.mdb.vo.MovieDetails
-import java.util.Locale
 
 /**
  * The movie details repository.
  * An abstraction layer between the movie details data sources and the app.
  */
-class MovieDetailsRepository(
-    provider: ApiProvider,
-    locale: Locale = Locale.getDefault()
-) {
-    private val client: ClientApi = ClientApiFactory.get(provider)
-    private val language: String = locale.toString()
-
-    suspend fun getDetails(movieId: Int): MovieDetails {
-        val movieDetailsResponse = client.getMovieService().getDetails(movieId, language).await()
-        return client.getConverterFactory().movieDetailsConverter().convert(movieDetailsResponse)
-    }
+class MovieDetailsRepository(private val client: ApiClient) {
+    fun getDetails(movieId: Int): LiveData<MovieDetails> = client.getDetails(movieId)
 }

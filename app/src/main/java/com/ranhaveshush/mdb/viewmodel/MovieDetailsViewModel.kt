@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ranhaveshush.mdb.api.ApiProvider
+import com.ranhaveshush.mdb.api.ClientFactory
 import com.ranhaveshush.mdb.repository.MovieDetailsRepository
 import com.ranhaveshush.mdb.vo.MovieDetails
-import com.ranhaveshush.mdb.vo.Resource
 import kotlinx.coroutines.launch
 
 /**
@@ -16,22 +16,21 @@ import kotlinx.coroutines.launch
  */
 @Suppress("TooGenericExceptionCaught")
 class MovieDetailsViewModel : ViewModel() {
-    private val repository = MovieDetailsRepository(ApiProvider.TMDb)
+    private val client = ClientFactory.get(ApiProvider.TMDb)
+    private val repository = MovieDetailsRepository(client)
 
-    private val movieLiveData = MutableLiveData<Resource<MovieDetails>>()
+    private val movieDetailsLiveData = MutableLiveData<MovieDetails>()
 
-    fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> {
-        movieLiveData.value = Resource.loading()
-
+    fun getDetails(movieId: Int): LiveData<MovieDetails> {
         viewModelScope.launch {
             try {
-                val movieDetails = repository.getDetails(movieId)
-                movieLiveData.postValue(Resource.success(movieDetails))
+                val details = repository.getDetails(movieId)
+                movieDetailsLiveData.postValue(details.value)
             } catch (e: Exception) {
-                movieLiveData.postValue(Resource.error(e.message))
+                TODO("Implement error handling.")
             }
         }
 
-        return movieLiveData
+        return movieDetailsLiveData
     }
 }
