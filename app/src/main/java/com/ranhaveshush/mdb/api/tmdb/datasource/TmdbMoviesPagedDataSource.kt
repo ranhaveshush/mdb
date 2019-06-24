@@ -5,7 +5,7 @@ import androidx.paging.PageKeyedDataSource
 import com.ranhaveshush.mdb.api.tmdb.TmdbApi
 import com.ranhaveshush.mdb.api.tmdb.response.TmdbMoviesPageResponse
 import com.ranhaveshush.mdb.vo.MovieItem
-import java.util.*
+import java.util.Locale
 
 abstract class TmdbMoviesPagedDataSource : PageKeyedDataSource<Int, MovieItem>() {
     abstract fun loadPage(page: Int): List<MovieItem>

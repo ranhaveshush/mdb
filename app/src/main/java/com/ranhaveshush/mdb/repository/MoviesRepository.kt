@@ -6,12 +6,14 @@ import androidx.paging.PagedList
 import com.ranhaveshush.mdb.api.ApiClient
 import com.ranhaveshush.mdb.vo.MovieItem
 
+private const val PAGE_SIZE: Int = 50
+
 /**
  * The movies repository.
  * An abstraction layer between movies data sources and the app.
  */
 class MoviesRepository(private val client: ApiClient) {
-    private val pageSize = 50
+    private val pageSize = PAGE_SIZE
 
     fun search(query: String): LiveData<PagedList<MovieItem>> {
         val dataSourceFactory = client.search(query)

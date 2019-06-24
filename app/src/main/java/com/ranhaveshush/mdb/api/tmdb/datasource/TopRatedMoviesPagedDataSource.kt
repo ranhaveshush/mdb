@@ -5,7 +5,7 @@ import androidx.paging.DataSource
 import com.ranhaveshush.mdb.api.tmdb.TmdbApi
 import com.ranhaveshush.mdb.api.tmdb.response.TmdbMoviesPageResponse
 import com.ranhaveshush.mdb.vo.MovieItem
-import java.util.*
+import java.util.Locale
 
 class TopRatedMoviesPagedDataSource(
     private val api: TmdbApi,

@@ -11,7 +11,7 @@ import com.ranhaveshush.mdb.api.tmdb.datasource.TopRatedMoviesPagedDataSource
 import com.ranhaveshush.mdb.api.tmdb.datasource.UpcomingMoviesPagedDataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
-import java.util.*
+import java.util.Locale
 
 class TmdbClient(
     private val api: TmdbApi,

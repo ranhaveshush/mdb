@@ -13,7 +13,7 @@ import com.ranhaveshush.mdb.vo.MovieItem
  * An abstraction layer between the UI and the Model.
  */
 @Suppress("TooGenericExceptionCaught")
-class MoviesViewModel : ViewModel() {
+class MoviesListViewModel : ViewModel() {
     private val client = ClientFactory.get(ApiProvider.TMDb)
     private val repository = MoviesRepository(client)
 
