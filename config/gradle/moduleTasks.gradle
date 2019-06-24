@@ -1,1 +1,2 @@
 apply from: "${project.rootDir}/config/gradle/codeQuality.gradle"
+apply from: "${project.rootDir}/config/gradle/runConnectedAndroidTest.gradle"
