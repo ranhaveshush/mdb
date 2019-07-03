@@ -42,10 +42,10 @@ allprojects {
 
     // AndroidX
     ext.version_legacy = '1.0.0'
-    ext.version_appcompat = '1.1.0-beta01'
+    ext.version_appcompat = '1.1.0-rc01'
     ext.version_constraintlayout = '2.0.0-beta2'
-    ext.version_lifecycle = '2.2.0-alpha01'
-    ext.version_navigation = '2.1.0-alpha05'
+    ext.version_lifecycle = '2.2.0-alpha02'
+    ext.version_navigation = '2.1.0-alpha06'
     ext.version_paging = '2.1.0'
 
     // Retrofit
