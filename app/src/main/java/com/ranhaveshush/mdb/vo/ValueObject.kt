@@ -1,7 +1,7 @@
 package com.ranhaveshush.mdb.vo
 
 /**
- * This is a marker interface to mark value objects,
+ * An interface marking ValueObject classes,
  * these objects are consumed and presented by the UI layer.
  */
 interface ValueObject

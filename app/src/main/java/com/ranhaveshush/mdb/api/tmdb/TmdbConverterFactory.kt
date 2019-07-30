@@ -10,6 +10,7 @@ import com.ranhaveshush.mdb.vo.MovieItem
  * A TMDb [Converter.Factory] implementation to convert TMDb response objects
  * to [value object][com.ranhaveshush.mdb.vo.ValueObject]'s.
  */
+// TODO: 7/30/19 Delete after changing implementation to DataSource.map(Function).
 class TmdbConverterFactory : Converter.Factory {
     override fun movieItemConverter(): Converter<Any, MovieItem> =
         object : Converter<Any, MovieItem> {

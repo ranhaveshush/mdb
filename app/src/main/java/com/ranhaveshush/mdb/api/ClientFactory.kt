@@ -5,10 +5,18 @@ import com.ranhaveshush.mdb.api.tmdb.TmdbClient
 import java.util.Locale
 
 /**
- * The API factory, a factory for [ApiClient] specific implementations
- * dependent on the given [ApiProvider] and [Locale].
+ * A factory for [ApiClient] specific implementations.
  */
 object ClientFactory {
+    /**
+     * Returns an [ApiClient] specific implementation,
+     * dependent on the given [ApiProvider] and [Locale].
+     *
+     * @param provider The API provider identifier.
+     * @param locale The optional locale, if not provided the default locale will be used.
+     *
+     * @return The requested [ApiClient] for the given [ApiProvider].
+     */
     fun get(provider: ApiProvider, locale: Locale = Locale.getDefault()): ApiClient =
         when (provider) {
             ApiProvider.TMDb -> TmdbClient(TmdbApi, locale)

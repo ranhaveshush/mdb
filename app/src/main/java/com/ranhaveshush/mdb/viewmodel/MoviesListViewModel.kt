@@ -9,7 +9,7 @@ import com.ranhaveshush.mdb.repository.MoviesRepository
 import com.ranhaveshush.mdb.vo.MovieItem
 
 /**
- * A movies [ViewModel] implementation.
+ * A movies list [ViewModel] implementation.
  * An abstraction layer between the UI and the Model.
  */
 @Suppress("TooGenericExceptionCaught")

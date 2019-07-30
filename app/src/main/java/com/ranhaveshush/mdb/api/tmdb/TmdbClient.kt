@@ -13,6 +13,9 @@ import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
 import java.util.Locale
 
+/**
+ * A TMDb [ApiClient] implementation.
+ */
 class TmdbClient(
     private val api: TmdbApi,
     private val locale: Locale = Locale.getDefault()
