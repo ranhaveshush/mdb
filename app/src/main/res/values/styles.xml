@@ -10,9 +10,11 @@
 
     <!-- Base widgets -->
 
-    <style name="Base"/>
-    <style name="Base.Widget"/>
-    <style name="Base.Widget.App"/>
+    <style name="Base" />
+
+    <style name="Base.Widget" />
+
+    <style name="Base.Widget.App" />
 
     <style name="Base.Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:layout_width">match_parent</item>
@@ -22,14 +24,15 @@
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Dark</item>
     </style>
 
-    <style name="Base.Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored"/>
+    <style name="Base.Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored" />
 
     <!-- Widgets -->
 
-    <style name="Widget"/>
-    <style name="Widget.App"/>
+    <style name="Widget" />
 
-    <style name="Widget.App.Toolbar" parent="Base.Widget.App.Toolbar"/>
+    <style name="Widget.App" />
+
+    <style name="Widget.App.Toolbar" parent="Base.Widget.App.Toolbar" />
 
     <style name="Widget.App.BottomNavigationView" parent="Base.Widget.App.BottomNavigationView">
         <item name="android:layout_width">match_parent</item>
