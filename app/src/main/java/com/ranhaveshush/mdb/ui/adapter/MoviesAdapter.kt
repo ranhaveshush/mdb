@@ -27,13 +27,16 @@ class MoviesAdapter : PagedListAdapter<MovieItem, MovieItemViewHolder>(MovieItem
         return MovieItemViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) {
+        val movie = getItem(position)
+        holder.bindTo(movie)
+    }
 }
 
 class MovieItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val movieTitle = itemView.textView_movieTitle
 
-    fun bind(movie: MovieItem?) {
+    fun bindTo(movie: MovieItem?) {
         itemView.setTag(R.id.tag_movie_id, movie?.id)
         itemView.setTag(R.id.tag_movie_title, movie?.title)
 
@@ -46,5 +49,5 @@ object MovieItemDiffCallback : DiffUtil.ItemCallback<MovieItem>() {
         oldItem.id == newItem.id
 
     override fun areContentsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean =
-        oldItem.id == newItem.id
+        oldItem == newItem
 }
