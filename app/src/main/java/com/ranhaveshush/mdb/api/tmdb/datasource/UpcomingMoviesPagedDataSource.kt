@@ -7,19 +7,18 @@ import com.ranhaveshush.mdb.api.tmdb.response.TmdbMoviesPageResponse
 import com.ranhaveshush.mdb.vo.MovieItem
 import java.util.Locale
 
+/**
+ * A upcoming movies [TmdbMoviesPagedDataSource] implementation,
+ * loads upcoming movies page data.
+ */
 class UpcomingMoviesPagedDataSource(
     private val api: TmdbApi,
     locale: Locale
 ) : TmdbMoviesPagedDataSource() {
     private val region = toRegion(locale)
 
-    override fun loadPage(page: Int): List<MovieItem> {
-        val moviesPageResponse = loadPageResponse(page)
-        return moviesPageResponse.results.map { TmdbApi.converter.movieItemConverter().convert(it) }
-    }
-
     @WorkerThread
-    override fun loadPageResponse(page: Int): TmdbMoviesPageResponse {
+    override fun requestPage(page: Int): TmdbMoviesPageResponse {
         val response = api.service.getUpcoming(region, page).execute()
         return response.body()!!
     }

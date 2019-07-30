@@ -6,17 +6,16 @@ import com.ranhaveshush.mdb.api.tmdb.TmdbApi
 import com.ranhaveshush.mdb.api.tmdb.response.TmdbMoviesPageResponse
 import com.ranhaveshush.mdb.vo.MovieItem
 
+/**
+ * A movies search [TmdbMoviesPagedDataSource] implementation,
+ * loads movies search page data.
+ */
 class SearchMoviesPagedDataSource(
     private val api: TmdbApi,
     private val query: String
 ) : TmdbMoviesPagedDataSource() {
-    override fun loadPage(page: Int): List<MovieItem> {
-        val moviesPageResponse = loadPageResponse(page)
-        return moviesPageResponse.results.map { TmdbApi.converter.movieItemConverter().convert(it) }
-    }
-
     @WorkerThread
-    override fun loadPageResponse(page: Int): TmdbMoviesPageResponse {
+    override fun requestPage(page: Int): TmdbMoviesPageResponse {
         val response = api.service.search(query, page).execute()
         return response.body()!!
     }

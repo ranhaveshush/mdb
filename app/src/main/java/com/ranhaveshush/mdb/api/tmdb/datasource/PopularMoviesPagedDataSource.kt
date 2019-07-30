@@ -7,19 +7,18 @@ import com.ranhaveshush.mdb.api.tmdb.response.TmdbMoviesPageResponse
 import com.ranhaveshush.mdb.vo.MovieItem
 import java.util.Locale
 
+/**
+ * A popular movies [TmdbMoviesPagedDataSource] implementation,
+ * loads popular movies page data.
+ */
 class PopularMoviesPagedDataSource(
     private val api: TmdbApi,
     locale: Locale
 ) : TmdbMoviesPagedDataSource() {
     private val region = toRegion(locale)
 
-    override fun loadPage(page: Int): List<MovieItem> {
-        val moviesPageResponse = loadPageResponse(page)
-        return moviesPageResponse.results.map { TmdbApi.converter.movieItemConverter().convert(it) }
-    }
-
     @WorkerThread
-    override fun loadPageResponse(page: Int): TmdbMoviesPageResponse {
+    override fun requestPage(page: Int): TmdbMoviesPageResponse {
         val response = api.service.getPopular(region, page).execute()
         return response.body()!!
     }

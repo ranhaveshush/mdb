@@ -7,16 +7,17 @@ import com.ranhaveshush.mdb.api.tmdb.response.TmdbMoviesPageResponse
 import com.ranhaveshush.mdb.vo.MovieItem
 import java.util.Locale
 
+/**
+ * A TMDb [PageKeyedDataSource] base implementation.
+ * Specific data source implementations need to extend this abstract class
+ * and override [requestPage] to provide their relevant page data.
+ */
 abstract class TmdbMoviesPagedDataSource : PageKeyedDataSource<Int, MovieItem>() {
-    abstract fun loadPage(page: Int): List<MovieItem>
-
-    @WorkerThread
-    abstract fun loadPageResponse(page: Int): TmdbMoviesPageResponse
+    private var totalResults: Int = 0
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, MovieItem>) {
-        val moviesPageResponse = loadPageResponse(1)
-        val data = moviesPageResponse.results.map { TmdbApi.converter.movieItemConverter().convert(it) }
-        callback.onResult(data, 0, moviesPageResponse.totalResults, 1, 2)
+        val data = loadPage(1)
+        callback.onResult(data, 0, totalResults, 1, 2)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, MovieItem>) {
@@ -26,8 +27,18 @@ abstract class TmdbMoviesPagedDataSource : PageKeyedDataSource<Int, MovieItem>()
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, MovieItem>) {
-        // ignored, since we only ever append to our initial load
+        // ignored, since we only ever append to our initial load.
     }
 
-    protected fun toRegion(locale: Locale): String = "${locale.isO3Language}_${locale.isO3Country}"
+    private fun loadPage(page: Int): List<MovieItem> {
+        val moviesPageResponse = requestPage(page)
+        totalResults = moviesPageResponse.totalResults
+        // TODO: 7/30/19 change implementation to DataSource.map(Function) and delete the converter.
+        return moviesPageResponse.results.map { TmdbApi.converter.movieItemConverter().convert(it) }
+    }
+
+    @WorkerThread
+    abstract fun requestPage(page: Int): TmdbMoviesPageResponse
+
+    protected fun toRegion(locale: Locale): String = "${locale.language}_${locale.country}"
 }
