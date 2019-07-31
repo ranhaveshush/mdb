@@ -20,7 +20,6 @@ object TmdbApi {
     private const val BASE_URL = BuildConfig.TMDB_API_URL
 
     val service = createService(HttpUrl.parse(BASE_URL)!!)
-    val converter = TmdbConverterFactory()
 
     private fun createService(httpUrl: HttpUrl): TmdbMovieService {
         val client = OkHttpClient.Builder()

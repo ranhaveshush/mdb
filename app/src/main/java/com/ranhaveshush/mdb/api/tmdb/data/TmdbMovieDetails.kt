@@ -1,11 +1,11 @@
-package com.ranhaveshush.mdb.api.tmdb.response
+package com.ranhaveshush.mdb.api.tmdb.data
 
 import com.squareup.moshi.Json
 
 /**
  * A TMDb movie details response object.
  */
-data class TmdbMovieDetailsResponse(
+data class TmdbMovieDetails(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "title") val title: String,
     @field:Json(name = "overview") val overview: String,

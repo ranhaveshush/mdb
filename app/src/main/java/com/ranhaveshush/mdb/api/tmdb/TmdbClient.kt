@@ -7,6 +7,7 @@ import androidx.paging.DataSource
 import com.ranhaveshush.mdb.api.ApiClient
 import com.ranhaveshush.mdb.api.tmdb.datasource.PopularMoviesPagedDataSource
 import com.ranhaveshush.mdb.api.tmdb.datasource.SearchMoviesPagedDataSource
+import com.ranhaveshush.mdb.api.tmdb.datasource.TmdbMovieDetailsToMovieDetailsFunction
 import com.ranhaveshush.mdb.api.tmdb.datasource.TopRatedMoviesPagedDataSource
 import com.ranhaveshush.mdb.api.tmdb.datasource.UpcomingMoviesPagedDataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
@@ -35,9 +36,8 @@ class TmdbClient(
     @WorkerThread
     override fun getDetails(movieId: Int): LiveData<MovieDetails> {
         val response = api.service.getDetails(movieId, locale.isO3Country).execute()
-        val movieDetailsResponse = response.body()!!
-        val movieDetails = api.converter.movieDetailsConverter().convert(movieDetailsResponse)
+        val movieDetails = response.body()!!
 
-        return MutableLiveData(movieDetails)
+        return MutableLiveData(TmdbMovieDetailsToMovieDetailsFunction().apply(movieDetails))
     }
 }

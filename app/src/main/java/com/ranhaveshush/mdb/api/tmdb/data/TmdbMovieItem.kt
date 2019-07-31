@@ -1,11 +1,11 @@
-package com.ranhaveshush.mdb.api.tmdb.response
+package com.ranhaveshush.mdb.api.tmdb.data
 
 import com.squareup.moshi.Json
 
 /**
- * A TMDb movie item in a [movies page response][TmdbMoviesPageResponse]'s results property.
+ * A TMDb movie item in a [TMDb movies page][TmdbMoviesPage]'s results property.
  */
-data class TmdbMovieItemResponse(
+data class TmdbMovieItem(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "title") val title: String,
     @field:Json(name = "vote_average") val voteAverage: Float,

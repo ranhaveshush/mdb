@@ -1,7 +1,7 @@
 package com.ranhaveshush.mdb.api.tmdb
 
-import com.ranhaveshush.mdb.api.tmdb.response.TmdbMovieDetailsResponse
-import com.ranhaveshush.mdb.api.tmdb.response.TmdbMoviesPageResponse
+import com.ranhaveshush.mdb.api.tmdb.data.TmdbMovieDetails
+import com.ranhaveshush.mdb.api.tmdb.data.TmdbMoviesPage
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,7 +22,7 @@ interface TmdbMovieService {
     fun search(
         @Query("query") query: String,
         @Query("page") page: Int
-    ): Call<TmdbMoviesPageResponse>
+    ): Call<TmdbMoviesPage>
 
     /**
      * Get a list of the current popular movies. This list updates daily.
@@ -35,7 +35,7 @@ interface TmdbMovieService {
     fun getPopular(
         @Query("region") region: String,
         @Query("page") page: Int
-    ): Call<TmdbMoviesPageResponse>
+    ): Call<TmdbMoviesPage>
 
     /**
      * Get the top rated movies.
@@ -48,7 +48,7 @@ interface TmdbMovieService {
     fun getTopRated(
         @Query("region") region: String,
         @Query("page") page: Int
-    ): Call<TmdbMoviesPageResponse>
+    ): Call<TmdbMoviesPage>
 
     /**
      * Get the upcoming movies.
@@ -61,7 +61,7 @@ interface TmdbMovieService {
     fun getUpcoming(
         @Query("region") region: String,
         @Query("page") page: Int
-    ): Call<TmdbMoviesPageResponse>
+    ): Call<TmdbMoviesPage>
 
     /**
      * Retrieve movie details for a given movie ID.
@@ -74,5 +74,5 @@ interface TmdbMovieService {
     fun getDetails(
         @Path("movie_id") movieId: Int,
         @Query("language") language: String
-    ): Call<TmdbMovieDetailsResponse>
+    ): Call<TmdbMovieDetails>
 }
