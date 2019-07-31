@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ranhaveshush.mdb.api.ApiProvider
-import com.ranhaveshush.mdb.api.ClientFactory
 import com.ranhaveshush.mdb.repository.MovieDetailsRepository
 import com.ranhaveshush.mdb.vo.MovieDetails
 import kotlinx.coroutines.launch
@@ -15,10 +13,7 @@ import kotlinx.coroutines.launch
  * An abstraction layer between the UI and the Model.
  */
 @Suppress("TooGenericExceptionCaught")
-class MovieDetailsViewModel : ViewModel() {
-    private val client = ClientFactory.get(ApiProvider.TMDb)
-    private val repository = MovieDetailsRepository(client)
-
+class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : ViewModel() {
     private val movieDetailsLiveData = MutableLiveData<MovieDetails>()
 
     fun getDetails(movieId: Int): LiveData<MovieDetails> {

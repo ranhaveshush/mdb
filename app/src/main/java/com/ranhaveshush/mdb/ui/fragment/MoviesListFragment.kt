@@ -11,12 +11,16 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
+import com.ranhaveshush.mdb.viewmodel.MovieListViewModelFactory
 import com.ranhaveshush.mdb.viewmodel.MoviesListViewModel
 import com.ranhaveshush.mdb.vo.MovieItem
 import kotlinx.android.synthetic.main.fragment_movies_list.*
 
 abstract class MoviesListFragment : Fragment() {
-    protected val viewModel: MoviesListViewModel by viewModels()
+    protected val viewModel: MoviesListViewModel by viewModels(
+        { this@MoviesListFragment },
+        { MovieListViewModelFactory() }
+    )
 
     private val moviesAdapter: MoviesAdapter = MoviesAdapter()
 
