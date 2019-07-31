@@ -35,7 +35,7 @@ class TmdbClient(
 
     @WorkerThread
     override fun getDetails(movieId: Int): LiveData<MovieDetails> {
-        val response = api.service.getDetails(movieId, locale.isO3Country).execute()
+        val response = api.service.getDetails(movieId, locale.country).execute()
         val movieDetails = response.body()!!
 
         return MutableLiveData(TmdbMovieDetailsToMovieDetailsFunction().apply(movieDetails))

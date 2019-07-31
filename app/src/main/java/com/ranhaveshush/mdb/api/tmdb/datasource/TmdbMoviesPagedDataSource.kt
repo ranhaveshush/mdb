@@ -42,5 +42,5 @@ abstract class TmdbMoviesPagedDataSource : PageKeyedDataSource<Int, TmdbMovieIte
     @WorkerThread
     abstract fun requestPage(page: Int): TmdbMoviesPage
 
-    protected fun toRegion(locale: Locale): String = "${locale.language}_${locale.country}"
+    protected fun toRegion(locale: Locale): String = locale.country
 }
