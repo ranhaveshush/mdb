@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.fragment_movies_list.*
 
 abstract class MoviesListFragment : Fragment() {
     protected val viewModel: MoviesListViewModel by viewModels(
-        { this@MoviesListFragment },
-        { MovieListViewModelFactory() }
+        factoryProducer = { MovieListViewModelFactory() }
     )
 
     private val moviesAdapter: MoviesAdapter = MoviesAdapter()

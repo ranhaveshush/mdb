@@ -16,8 +16,7 @@ import kotlinx.android.synthetic.main.fragment_movie_details.*
 class MovieDetailsFragment : Fragment() {
     private val args: MovieDetailsFragmentArgs by navArgs()
     private val viewModel: MovieDetailsViewModel by viewModels(
-        { this@MovieDetailsFragment },
-        { MovieDetailsViewModelFactory() }
+        factoryProducer = { MovieDetailsViewModelFactory() }
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
