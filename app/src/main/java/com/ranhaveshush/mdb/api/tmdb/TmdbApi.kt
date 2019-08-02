@@ -1,6 +1,5 @@
 package com.ranhaveshush.mdb.api.tmdb
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.ranhaveshush.mdb.BuildConfig
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -33,7 +32,6 @@ object TmdbApi {
             .client(client)
             .baseUrl(httpUrl)
             .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
         return retrofit.create(TmdbMovieService::class.java)
