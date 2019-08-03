@@ -1,8 +1,7 @@
 package com.ranhaveshush.mdb.api.tmdb
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import androidx.paging.DataSource
 import com.ranhaveshush.mdb.api.ApiClient
 import com.ranhaveshush.mdb.api.tmdb.datasource.PopularMoviesPagedDataSource
@@ -12,7 +11,8 @@ import com.ranhaveshush.mdb.api.tmdb.datasource.TopRatedMoviesPagedDataSource
 import com.ranhaveshush.mdb.api.tmdb.datasource.UpcomingMoviesPagedDataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
-import java.util.Locale
+import kotlinx.coroutines.Dispatchers
+import java.util.*
 
 /**
  * A TMDb [ApiClient] implementation.
@@ -33,11 +33,11 @@ class TmdbClient(
     override fun getUpcoming(): DataSource.Factory<Int, MovieItem> =
         UpcomingMoviesPagedDataSource.Factory(api, locale)
 
-    @WorkerThread
-    override fun getDetails(movieId: Int): LiveData<MovieDetails> {
+    override suspend fun getDetails(movieId: Int): LiveData<MovieDetails> = liveData(Dispatchers.IO) {
         val response = api.service.getDetails(movieId, locale.country).execute()
-        val movieDetails = response.body()!!
-
-        return MutableLiveData(TmdbMovieDetailsToMovieDetailsFunction().apply(movieDetails))
+        // TODO: 8/2/19 wrap TmdbMovieDetils with NetworkResource object to provide network state.
+        val tmdbMovieDetails = response.body()!!
+        val movieDetails = TmdbMovieDetailsToMovieDetailsFunction().apply(tmdbMovieDetails)
+        emit(movieDetails)
     }
 }

@@ -1,6 +1,5 @@
 package com.ranhaveshush.mdb.api
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
@@ -21,6 +20,5 @@ interface ApiClient {
 
     fun getUpcoming(): DataSource.Factory<Int, MovieItem>
 
-    @WorkerThread
-    fun getDetails(movieId: Int): LiveData<MovieDetails>
+    suspend fun getDetails(movieId: Int): LiveData<MovieDetails>
 }
