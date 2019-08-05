@@ -6,13 +6,14 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.ranhaveshush.mdb.repository.MovieDetailsRepository
 import com.ranhaveshush.mdb.vo.MovieDetails
+import com.ranhaveshush.mdb.vo.Resource
 
 /**
  * A movie details [ViewModel] implementation.
  * An abstraction layer between the UI and the Model.
  */
 class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : ViewModel() {
-    fun getDetails(movieId: Int): LiveData<MovieDetails> = liveData(viewModelScope.coroutineContext) {
+    fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData(viewModelScope.coroutineContext) {
         emitSource(repository.getDetails(movieId))
     }
 }

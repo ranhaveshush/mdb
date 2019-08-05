@@ -11,6 +11,7 @@ import com.ranhaveshush.mdb.api.tmdb.datasource.TopRatedMoviesPagedDataSource
 import com.ranhaveshush.mdb.api.tmdb.datasource.UpcomingMoviesPagedDataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
+import com.ranhaveshush.mdb.vo.Resource
 import kotlinx.coroutines.Dispatchers
 import java.util.*
 
@@ -33,11 +34,16 @@ class TmdbClient(
     override fun getUpcoming(): DataSource.Factory<Int, MovieItem> =
         UpcomingMoviesPagedDataSource.Factory(api, locale)
 
-    override suspend fun getDetails(movieId: Int): LiveData<MovieDetails> = liveData(Dispatchers.IO) {
+    override suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData(Dispatchers.IO) {
+        emit(Resource.loading<MovieDetails>())
+
         val response = api.service.getDetails(movieId, locale.country).execute()
-        // TODO: 8/2/19 wrap TmdbMovieDetils with NetworkResource object to provide network state.
-        val tmdbMovieDetails = response.body()!!
-        val movieDetails = TmdbMovieDetailsToMovieDetailsFunction().apply(tmdbMovieDetails)
-        emit(movieDetails)
+        if (response.isSuccessful) {
+            val tmdbMovieDetails = response.body()!!
+            val movieDetails = TmdbMovieDetailsToMovieDetailsFunction().apply(tmdbMovieDetails)
+            emit(Resource.success(movieDetails))
+        } else {
+            emit(Resource.error<MovieDetails>(response.message()))
+        }
     }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
+import com.ranhaveshush.mdb.vo.Resource
 
 /**
  * An API client interface that provides a contract between
@@ -20,5 +21,5 @@ interface ApiClient {
 
     fun getUpcoming(): DataSource.Factory<Int, MovieItem>
 
-    suspend fun getDetails(movieId: Int): LiveData<MovieDetails>
+    suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>>
 }
