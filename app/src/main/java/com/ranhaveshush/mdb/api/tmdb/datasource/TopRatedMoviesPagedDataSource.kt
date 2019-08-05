@@ -13,13 +13,11 @@ import java.util.Locale
  */
 class TopRatedMoviesPagedDataSource(
     private val api: TmdbApi,
-    locale: Locale
+    private val locale: Locale
 ) : TmdbMoviesPagedDataSource() {
-    private val region = toRegion(locale)
-
     @WorkerThread
     override fun requestPage(page: Int): TmdbMoviesPage {
-        val response = api.service.getTopRated(region, page).execute()
+        val response = api.service.getTopRated(locale.country, page).execute()
         return response.body()!!
     }
 

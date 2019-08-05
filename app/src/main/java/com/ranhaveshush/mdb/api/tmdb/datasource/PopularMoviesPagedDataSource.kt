@@ -5,7 +5,7 @@ import androidx.paging.DataSource
 import com.ranhaveshush.mdb.api.tmdb.TmdbApi
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMoviesPage
 import com.ranhaveshush.mdb.vo.MovieItem
-import java.util.Locale
+import java.util.*
 
 /**
  * A popular movies [TmdbMoviesPagedDataSource] implementation,
@@ -13,13 +13,11 @@ import java.util.Locale
  */
 class PopularMoviesPagedDataSource(
     private val api: TmdbApi,
-    locale: Locale
+    private val locale: Locale
 ) : TmdbMoviesPagedDataSource() {
-    private val region = toRegion(locale)
-
     @WorkerThread
     override fun requestPage(page: Int): TmdbMoviesPage {
-        val response = api.service.getPopular(region, page).execute()
+        val response = api.service.getPopular(locale.country, page).execute()
         return response.body()!!
     }
 

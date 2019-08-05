@@ -4,7 +4,6 @@ import androidx.annotation.WorkerThread
 import androidx.paging.PageKeyedDataSource
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMovieItem
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMoviesPage
-import java.util.Locale
 
 /**
  * A TMDb [PageKeyedDataSource] base implementation.
@@ -41,6 +40,4 @@ abstract class TmdbMoviesPagedDataSource : PageKeyedDataSource<Int, TmdbMovieIte
 
     @WorkerThread
     abstract fun requestPage(page: Int): TmdbMoviesPage
-
-    protected fun toRegion(locale: Locale): String = locale.country
 }
