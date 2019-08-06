@@ -8,23 +8,14 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ranhaveshush.mdb.MainNavDirections
-import com.ranhaveshush.mdb.R
+import com.ranhaveshush.mdb.databinding.ItemMovieBinding
 import com.ranhaveshush.mdb.vo.MovieItem
-import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MoviesAdapter : PagedListAdapter<MovieItem, MovieItemViewHolder>(MovieItemDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-
-        itemView.setOnClickListener {
-            val movieId = it.getTag(R.id.tag_movie_id) as Int
-            val movieTitle = it.getTag(R.id.tag_movie_title) as String
-
-            val action = MainNavDirections.actionGlobalMovieDetailsFragment(movieId, movieTitle)
-            it.findNavController().navigate(action)
-        }
-
-        return MovieItemViewHolder(itemView)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ItemMovieBinding.inflate(inflater, parent, false)
+        return MovieItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) {
@@ -33,14 +24,23 @@ class MoviesAdapter : PagedListAdapter<MovieItem, MovieItemViewHolder>(MovieItem
     }
 }
 
-class MovieItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val movieTitle = itemView.textView_movieTitle
+class MovieItemViewHolder(
+    private val binding: ItemMovieBinding
+) : RecyclerView.ViewHolder(binding.root) {
+    init {
+        binding.movieItemClickListener = MovieItemClickListener()
+    }
 
-    fun bindTo(movie: MovieItem?) {
-        itemView.setTag(R.id.tag_movie_id, movie?.id)
-        itemView.setTag(R.id.tag_movie_title, movie?.title)
+    fun bindTo(movieItem: MovieItem?) {
+        binding.movieItem = movieItem
+        binding.executePendingBindings()
+    }
+}
 
-        movieTitle.text = movie?.title
+class MovieItemClickListener {
+    fun onMovieItemClick(view: View, movieItem: MovieItem) {
+        val action = MainNavDirections.actionGlobalMovieDetailsFragment(movieItem.id, movieItem.title)
+        view.findNavController().navigate(action)
     }
 }
 
