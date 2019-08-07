@@ -10,7 +10,7 @@ data class TmdbMovieDetails(
     @field:Json(name = "title") val title: String,
     @field:Json(name = "overview") val overview: String,
     @field:Json(name = "release_date") val releaseDate: String,
-    @field:Json(name = "runtime") val runtime: Int,
+    @field:Json(name = "runtime") val runtime: Int?,
     @field:Json(name = "status") val status: String,
     @field:Json(name = "vote_average") val voteAverage: Float,
     @field:Json(name = "vote_count") val voteCount: Int,

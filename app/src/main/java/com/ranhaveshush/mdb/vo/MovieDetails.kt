@@ -8,7 +8,7 @@ data class MovieDetails(
     val title: String,
     val overview: String,
     val releaseDate: String,
-    val runtime: Int,
+    val runtime: Int?,
     val status: String,
     val voteAverage: Float,
     val voteCount: Int,

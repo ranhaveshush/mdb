@@ -37,13 +37,19 @@ class TmdbClient(
     override suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData(Dispatchers.IO) {
         emit(Resource.loading<MovieDetails>())
 
-        val response = api.service.getDetails(movieId, locale.country).execute()
-        if (response.isSuccessful) {
-            val tmdbMovieDetails = response.body()!!
-            val movieDetails = TmdbMovieDetailsToMovieDetailsFunction().apply(tmdbMovieDetails)
-            emit(Resource.success(movieDetails))
-        } else {
-            emit(Resource.error<MovieDetails>(response.message()))
+        val resource = try {
+            val response = api.service.getDetails(movieId, locale.country).execute()
+            if (response.isSuccessful) {
+                val tmdbMovieDetails = response.body()!!
+                val movieDetails = TmdbMovieDetailsToMovieDetailsFunction().apply(tmdbMovieDetails)
+                Resource.success(movieDetails)
+            } else {
+                Resource.error(response.message())
+            }
+        } catch (e: Exception) {
+            Resource.error(e.localizedMessage!!, e.cause)
         }
+
+        emit(resource)
     }
 }
