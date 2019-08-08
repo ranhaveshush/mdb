@@ -5,7 +5,7 @@ import androidx.paging.DataSource
 import com.ranhaveshush.mdb.api.tmdb.TmdbApi
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMoviesPage
 import com.ranhaveshush.mdb.vo.MovieItem
-import java.util.*
+import java.util.Locale
 
 /**
  * A popular movies [TmdbMoviesPagedDataSource] implementation,

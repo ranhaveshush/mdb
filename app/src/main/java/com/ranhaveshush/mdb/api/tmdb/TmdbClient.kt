@@ -13,7 +13,7 @@ import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
 import com.ranhaveshush.mdb.vo.Resource
 import kotlinx.coroutines.Dispatchers
-import java.util.*
+import java.util.Locale
 
 /**
  * A TMDb [ApiClient] implementation.
@@ -34,10 +34,11 @@ class TmdbClient(
     override fun getUpcoming(): DataSource.Factory<Int, MovieItem> =
         UpcomingMoviesPagedDataSource.Factory(api, locale)
 
+    @Suppress("TooGenericExceptionCaught")
     override suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData(Dispatchers.IO) {
         emit(Resource.loading<MovieDetails>())
 
-        val resource = try {
+        val resource: Resource<MovieDetails> = try {
             val response = api.service.getDetails(movieId, locale.country).execute()
             if (response.isSuccessful) {
                 val tmdbMovieDetails = response.body()!!
