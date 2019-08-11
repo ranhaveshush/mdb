@@ -26,9 +26,10 @@
         android:onClick="@{(view) -> movieItemClickListener.onMovieItemClick(view, movieItem)}">
 
         <ImageView
+            android:id="@+id/imageView_movieThumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@color/cardview_dark_background" />
+            android:src="@color/item_movie_thumbnail_background" />
 
         <TextView
             android:id="@+id/textView_movieTitle"

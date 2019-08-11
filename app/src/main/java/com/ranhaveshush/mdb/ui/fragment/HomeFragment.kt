@@ -11,16 +11,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
-import com.ranhaveshush.mdb.viewmodel.MovieListViewModelFactory
-import com.ranhaveshush.mdb.viewmodel.MoviesListViewModel
+import com.ranhaveshush.mdb.viewmodel.HomeViewModel
+import com.ranhaveshush.mdb.viewmodel.HomeViewModelFactory
 import com.ranhaveshush.mdb.vo.MoviesCategory
 import kotlinx.android.synthetic.main.fragment_home.popular_movies
 import kotlinx.android.synthetic.main.fragment_home.top_rated_movies
 import kotlinx.android.synthetic.main.fragment_home.upcoming_movies
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
-    private val viewModel: MoviesListViewModel by viewModels(
-        factoryProducer = { MovieListViewModelFactory() }
+    private val viewModel: HomeViewModel by viewModels(
+        factoryProducer = { HomeViewModelFactory() }
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,17 +35,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun createMoviesCategories(): Map<View, MoviesCategory> = mapOf(
         Pair(popular_movies, MoviesCategory(
             getString(R.string.fragment_popular_movies_title),
-            { viewModel.getPopular() },
+            { viewModel.popularMovies },
             { HomeFragmentDirections.actionHomeFragmentToPopularMoviesFragment() }
         )),
         Pair(top_rated_movies, MoviesCategory(
             getString(R.string.fragment_top_rated_movies_title),
-            { viewModel.getTopRated() },
+            { viewModel.topRatedMovies },
             { HomeFragmentDirections.actionHomeFragmentToTopRatedMoviesFragment() }
         )),
         Pair(upcoming_movies, MoviesCategory(
             getString(R.string.fragment_upcoming_movies_title),
-            { viewModel.getUpcoming() },
+            { viewModel.upcomingMovies },
             { HomeFragmentDirections.actionHomeFragmentToUpcomingMoviesFragment() }
         )))
 
@@ -59,7 +59,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         moviesTitleTextView.text = category.title
         moviesTitleTextView.setOnClickListener {
-            findNavController().navigate(category.getDirectionsToCategory())
+            val directions = category.getDirectionsToCategory()
+            findNavController().navigate(directions)
         }
 
         moviesRecyclerView.adapter = MoviesAdapter()
