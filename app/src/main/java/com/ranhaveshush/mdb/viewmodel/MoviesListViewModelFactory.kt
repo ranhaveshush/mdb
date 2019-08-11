@@ -9,7 +9,7 @@ import com.ranhaveshush.mdb.repository.MoviesRepository
 /**
  * A factory for creating [MoviesListViewModel] with a default [MoviesRepository].
  */
-class MovieListViewModelFactory(
+class MoviesListViewModelFactory(
     private val repository: MoviesRepository = MoviesRepository(ClientFactory.get(ApiProvider.TMDb))
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
