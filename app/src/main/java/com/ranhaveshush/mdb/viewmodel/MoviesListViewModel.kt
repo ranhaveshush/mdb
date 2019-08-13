@@ -24,4 +24,11 @@ class MoviesListViewModel(private val repository: MoviesRepository) : ViewModel(
     val upcomingMovies = liveData(viewModelScope.coroutineContext) {
         emitSource(repository.getUpcoming().toLiveData(PAGE_SIZE))
     }
+
+    /**
+     * A singleton object for creating MoviesListViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
+     */
+    object FactoryProducer {
+        fun create() = ViewModelFactoryProducer.of(MoviesListViewModel::class.java, MoviesRepository::class.java)
+    }
 }

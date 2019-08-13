@@ -10,12 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.ranhaveshush.mdb.databinding.FragmentMovieDetailsBinding
 import com.ranhaveshush.mdb.viewmodel.MovieDetailsViewModel
-import com.ranhaveshush.mdb.viewmodel.MovieDetailsViewModelFactory
 
 class MovieDetailsFragment : Fragment() {
     private val args: MovieDetailsFragmentArgs by navArgs()
     private val viewModel: MovieDetailsViewModel by viewModels(
-        factoryProducer = { MovieDetailsViewModelFactory() }
+        factoryProducer = MovieDetailsViewModel.FactoryProducer.create()
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

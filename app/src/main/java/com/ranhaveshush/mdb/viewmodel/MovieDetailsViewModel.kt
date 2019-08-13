@@ -16,4 +16,12 @@ class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : Vi
     fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData(viewModelScope.coroutineContext) {
         emitSource(repository.getDetails(movieId))
     }
+
+    /**
+     * A singleton object for creating MovieDetailsViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
+     */
+    object FactoryProducer {
+        fun create() =
+            ViewModelFactoryProducer.of(MovieDetailsViewModel::class.java, MovieDetailsRepository::class.java)
+    }
 }

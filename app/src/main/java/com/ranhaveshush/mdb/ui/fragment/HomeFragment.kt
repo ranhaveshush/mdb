@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.viewmodel.HomeViewModel
-import com.ranhaveshush.mdb.viewmodel.HomeViewModelFactory
 import com.ranhaveshush.mdb.vo.MoviesCategory
 import kotlinx.android.synthetic.main.fragment_home.popular_movies
 import kotlinx.android.synthetic.main.fragment_home.top_rated_movies
@@ -20,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_home.upcoming_movies
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels(
-        factoryProducer = { HomeViewModelFactory() }
+        factoryProducer = HomeViewModel.FactoryProducer.create()
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

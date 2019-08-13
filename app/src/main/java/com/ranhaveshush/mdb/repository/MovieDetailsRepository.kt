@@ -9,6 +9,6 @@ import com.ranhaveshush.mdb.vo.Resource
  * The movie details repository.
  * An abstraction layer between the movie details data sources and the app.
  */
-class MovieDetailsRepository(private val client: ApiClient) {
+class MovieDetailsRepository(client: ApiClient) : Repository(client) {
     suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = client.getDetails(movieId)
 }

@@ -23,4 +23,11 @@ class SearchViewModel(private val repository: MoviesRepository) : ViewModel() {
     fun search(query: String): LiveData<PagedList<MovieItem>> = liveData(viewModelScope.coroutineContext) {
         emitSource(repository.search(query).toLiveData(PAGE_SIZE))
     }
+
+    /**
+     * A singleton object for creating SearchViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
+     */
+    object FactoryProducer {
+        fun create() = ViewModelFactoryProducer.of(SearchViewModel::class.java, MoviesRepository::class.java)
+    }
 }

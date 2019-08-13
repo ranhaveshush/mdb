@@ -8,7 +8,7 @@ import com.ranhaveshush.mdb.vo.MovieItem
  * The movies repository.
  * An abstraction layer between movies data sources and the app.
  */
-class MoviesRepository(private val client: ApiClient) {
+class MoviesRepository(client: ApiClient) : Repository(client) {
     fun search(query: String): DataSource.Factory<Int, MovieItem> = client.search(query)
 
     fun getPopular(): DataSource.Factory<Int, MovieItem> = client.getPopular()

@@ -10,13 +10,12 @@ import androidx.paging.PagedList
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.viewmodel.MoviesListViewModel
-import com.ranhaveshush.mdb.viewmodel.MoviesListViewModelFactory
 import com.ranhaveshush.mdb.vo.MovieItem
 import kotlinx.android.synthetic.main.fragment_movies_list.recyclerView_movies
 
 abstract class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
     protected val viewModel: MoviesListViewModel by viewModels(
-        factoryProducer = { MoviesListViewModelFactory() }
+        factoryProducer = MoviesListViewModel.FactoryProducer.create()
     )
 
     protected abstract val moviesList: LiveData<PagedList<MovieItem>>
