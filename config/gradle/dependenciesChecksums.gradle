@@ -23,6 +23,7 @@ if (!hasProperty("checksums")) {
             "com.squareup.retrofit2:retrofit:2.6.1:2ab5223f1afd392a79023f2564d204ef:MD5",
             "com.squareup.retrofit2:converter-moshi:2.6.1:e5b9b205dd3969bafc6515c2b1dfcbe8:MD5",
             "com.squareup.okhttp3:logging-interceptor:3.12.3:4a7e7690a9ff3df5ea29dd73292490db:MD5",
+            "io.coil-kt:coil:0.6.0:5b8f549147995ac0412cf8965fadb446:MD5",
     ]
 
     ext.checksums = checksums
