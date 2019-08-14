@@ -18,9 +18,15 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object TmdbApi {
     private const val BASE_URL = BuildConfig.TMDB_API_URL
 
-    val service = createService(HttpUrl.parse(BASE_URL)!!)
+    val service = createService(
+        HttpUrl.parse(BASE_URL)!!,
+        TmdbMovieService::class.java
+    )
 
-    private fun createService(httpUrl: HttpUrl): TmdbMovieService {
+    private fun <ServiceT> createService(
+        baseUrl: HttpUrl,
+        serviceClass: Class<ServiceT>
+    ): ServiceT {
         val client = OkHttpClient.Builder()
             .addInterceptor(TmdbInterceptor())
             .addInterceptor(HttpLoggingInterceptor().apply {
@@ -30,10 +36,10 @@ object TmdbApi {
 
         val retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl(httpUrl)
+            .baseUrl(baseUrl)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
-        return retrofit.create(TmdbMovieService::class.java)
+        return retrofit.create(serviceClass)
     }
 }

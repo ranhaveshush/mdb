@@ -1,5 +1,6 @@
 package com.ranhaveshush.mdb.api.tmdb
 
+import com.ranhaveshush.mdb.api.tmdb.data.TmdbConfiguration
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMovieDetails
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMoviesPage
 import retrofit2.Call
@@ -75,4 +76,14 @@ interface TmdbMovieService {
         @Path("movie_id") movieId: Int,
         @Query("language") language: String
     ): Call<TmdbMovieDetails>
+
+    /**
+     * Retrieve the TMDb API system wide configuration information.
+     * Some elements of the API require some knowledge of this configuration data.
+     * This method currently holds the data relevant to building image URLs as well as the change key map.
+     *
+     * @return The TMDb API system wide configuration information.
+     */
+    @GET("configuration")
+    fun getConfiguration(): Call<TmdbConfiguration>
 }
