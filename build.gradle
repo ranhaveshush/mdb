@@ -55,7 +55,7 @@ allprojects {
     ext.version_logging_interceptor = '3.12.3' // Latest version to support API level < 24.
 
     // Coil - Co-routines Image Loading.
-    ext.version_coil = '0.6.0'
+    ext.version_coil = '0.6.1'
 
     repositories {
         google()
