@@ -36,7 +36,7 @@ class TmdbClient(
 
     @Suppress("TooGenericExceptionCaught")
     override suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData(Dispatchers.IO) {
-        emit(Resource.loading<MovieDetails>())
+        emit(Resource.loading())
 
         val resource: Resource<MovieDetails> = try {
             val response = api.service.getDetails(movieId, locale.country).execute()

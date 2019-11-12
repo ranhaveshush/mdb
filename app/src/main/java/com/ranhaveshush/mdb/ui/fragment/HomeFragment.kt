@@ -27,7 +27,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val moviesCategories = createMoviesCategories()
         moviesCategories.forEach { (view, category) ->
-            bindMoviesCategory(view, category)
+            bindMoviesCategoryToView(view, category)
         }
     }
 
@@ -48,7 +48,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             { HomeFragmentDirections.actionHomeFragmentToUpcomingMoviesFragment() }
         )))
 
-    private fun bindMoviesCategory(
+    private fun bindMoviesCategoryToView(
         view: View,
         category: MoviesCategory
     ) {

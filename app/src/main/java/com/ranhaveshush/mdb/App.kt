@@ -1,7 +1,6 @@
 package com.ranhaveshush.mdb
 
 import android.app.Application
-import android.os.Build
 import android.os.StrictMode
 
 /**
@@ -16,18 +15,11 @@ class App : Application() {
 
     private fun configStrictMode() {
         // Configure thread policy
-        val threadPolicyBuilder = StrictMode.ThreadPolicy.Builder()
-        threadPolicyBuilder.detectNetwork()
-        threadPolicyBuilder.detectCustomSlowCalls()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            threadPolicyBuilder.detectResourceMismatches()
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            threadPolicyBuilder.detectUnbufferedIo()
-        }
-        StrictMode.setThreadPolicy(threadPolicyBuilder.build())
+        val threadPolicy = StrictMode.ThreadPolicy.Builder().detectAll().build()
+        StrictMode.setThreadPolicy(threadPolicy)
 
         // Configure VM policy
-        StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().detectAll().build())
+        val vmPolicy = StrictMode.VmPolicy.Builder().detectAll().build()
+        StrictMode.setVmPolicy(vmPolicy)
     }
 }

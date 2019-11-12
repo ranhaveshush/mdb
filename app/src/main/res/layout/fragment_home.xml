@@ -16,11 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="center"
-            android:text="Featured Movie"
             app:layout_constraintBottom_toTopOf="@+id/popular_movies"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Featured Movie" />
 
         <include
             android:id="@+id/popular_movies"

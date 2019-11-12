@@ -28,7 +28,7 @@ class MovieItemViewHolder(
     private val binding: ItemMovieBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     init {
-        binding.movieItemClickListener = MovieItemClickListener()
+        binding.movieItemClickListener = MovieItemClickListener
     }
 
     fun bindTo(movieItem: MovieItem?) {
@@ -37,9 +37,10 @@ class MovieItemViewHolder(
     }
 }
 
-class MovieItemClickListener {
+object MovieItemClickListener {
     fun onMovieItemClick(view: View, movieItem: MovieItem) {
-        val directions = MainNavDirections.actionGlobalMovieDetailsFragment(movieItem.id, movieItem.title)
+        val directions =
+            MainNavDirections.actionGlobalMovieDetailsFragment(movieItem.id, movieItem.title)
         view.findNavController().navigate(directions)
     }
 }

@@ -49,7 +49,7 @@ data class Resource<T> private constructor(
          *
          * @param data The data held by the resource.
          */
-        fun <T> success(data: T) = Resource<T>(ResourceState.SUCCESS, data)
+        fun <T> success(data: T) = Resource(ResourceState.SUCCESS, data)
 
         /**
          * Convenient method to build a failure resource with a given error message and
