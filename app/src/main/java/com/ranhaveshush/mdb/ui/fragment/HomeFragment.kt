@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
+import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.viewmodel.HomeViewModel
 import com.ranhaveshush.mdb.vo.MoviesCategory
 import kotlinx.android.synthetic.main.fragment_home.popular_movies
@@ -62,7 +63,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             findNavController().navigate(directions)
         }
 
-        moviesRecyclerView.adapter = MoviesAdapter()
+        val posterLoader = MovieItemPosterLoader {
+            viewModel.getPosterUrl(it)
+        }
+
+        moviesRecyclerView.adapter = MoviesAdapter(posterLoader)
         category.getLiveMoviesList().observe(this@HomeFragment, Observer {
             val adapter = moviesRecyclerView.adapter as MoviesAdapter
             adapter.submitList(it)

@@ -22,4 +22,8 @@ interface ApiClient {
     fun getUpcoming(): DataSource.Factory<Int, MovieItem>
 
     suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>>
+
+    fun getPosterUrl(movieItem: MovieItem): String
+
+    fun getBackdropUrl(movieDetails: MovieDetails): String
 }

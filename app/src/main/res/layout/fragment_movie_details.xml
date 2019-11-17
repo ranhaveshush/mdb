@@ -14,22 +14,50 @@
             type="com.ranhaveshush.mdb.vo.Resource&lt;MovieDetails>" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragment.MovieDetailsFragment">
 
-        <TextView
-            android:id="@+id/textView_movieDetails"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/padding_standard"
-            android:text="@{resource.toString()}"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imageView_movieBackdrop"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/textView_movieDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_moviesTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#64000000"
+                android:padding="@dimen/margin_standard"
+                android:text="@{resource.data.title}"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/imageView_movieBackdrop"
+                app:layout_constraintStart_toStartOf="@id/imageView_movieBackdrop"
+                tools:text="Movie Title" />
+
+            <TextView
+                android:id="@+id/textView_movieDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_standard"
+                android:text="@{resource.toString()}"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/imageView_movieBackdrop"
+                tools:text="@tools:sample/lorem/random" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

@@ -13,15 +13,21 @@ import com.ranhaveshush.mdb.vo.Resource
  * An abstraction layer between the UI and the Model.
  */
 class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : ViewModel() {
-    fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData(viewModelScope.coroutineContext) {
-        emitSource(repository.getDetails(movieId))
-    }
+    fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> =
+        liveData(viewModelScope.coroutineContext) {
+            emitSource(repository.getDetails(movieId))
+        }
+
+    fun getBackdropUrl(movieDetails: MovieDetails): String = repository.getBackdropUrl(movieDetails)
 
     /**
      * A singleton object for creating MovieDetailsViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
      */
     object FactoryProducer {
         fun create() =
-            ViewModelFactoryProducer.of(MovieDetailsViewModel::class.java, MovieDetailsRepository::class.java)
+            ViewModelFactoryProducer.of(
+                MovieDetailsViewModel::class.java,
+                MovieDetailsRepository::class.java
+            )
     }
 }

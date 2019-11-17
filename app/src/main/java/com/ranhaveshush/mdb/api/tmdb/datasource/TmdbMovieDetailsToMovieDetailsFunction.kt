@@ -18,6 +18,6 @@ class TmdbMovieDetailsToMovieDetailsFunction : Function<TmdbMovieDetails, MovieD
         input.status,
         input.voteAverage,
         input.voteCount,
-        input.posterPath
+        input.backdropPath
     )
 }

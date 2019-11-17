@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
+import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.viewmodel.MoviesListViewModel
 import com.ranhaveshush.mdb.vo.MovieItem
 import kotlinx.android.synthetic.main.fragment_movies_list.recyclerView_movies
@@ -20,7 +21,8 @@ abstract class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
 
     protected abstract val moviesList: LiveData<PagedList<MovieItem>>
 
-    private val moviesAdapter: MoviesAdapter = MoviesAdapter()
+    private val moviesAdapter: MoviesAdapter =
+        MoviesAdapter(MovieItemPosterLoader { viewModel.getPosterUrl(it) })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

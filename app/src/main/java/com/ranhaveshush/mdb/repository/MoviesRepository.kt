@@ -16,4 +16,6 @@ class MoviesRepository(client: ApiClient) : Repository(client) {
     fun getTopRated(): DataSource.Factory<Int, MovieItem> = client.getTopRated()
 
     fun getUpcoming(): DataSource.Factory<Int, MovieItem> = client.getUpcoming()
+
+    fun getPosterUrl(movieItem: MovieItem): String = client.getPosterUrl(movieItem)
 }

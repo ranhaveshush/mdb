@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -30,22 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@color/item_movie_thumbnail_background" />
-
-        <TextView
-            android:id="@+id/textView_movieTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:gravity="center"
-            android:text="@{movieItem.title}"
-            android:textColor="@android:color/primary_text_dark"
-            android:textSize="@dimen/item_movie_title_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Movie Title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.toLiveData
 import com.ranhaveshush.mdb.repository.MoviesRepository
+import com.ranhaveshush.mdb.vo.MovieItem
 
 private const val PAGE_SIZE: Int = 10
 
@@ -25,10 +26,13 @@ class HomeViewModel(private val repository: MoviesRepository) : ViewModel() {
         emitSource(repository.getUpcoming().toLiveData(PAGE_SIZE))
     }
 
+    fun getPosterUrl(movieItem: MovieItem) = repository.getPosterUrl(movieItem)
+
     /**
      * A singleton object for creating HomeViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
      */
     object FactoryProducer {
-        fun create() = ViewModelFactoryProducer.of(HomeViewModel::class.java, MoviesRepository::class.java)
+        fun create() =
+            ViewModelFactoryProducer.of(HomeViewModel::class.java, MoviesRepository::class.java)
     }
 }
