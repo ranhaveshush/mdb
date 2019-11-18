@@ -3,7 +3,6 @@ package com.ranhaveshush.mdb.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ranhaveshush.mdb.api.ApiClient
-import com.ranhaveshush.mdb.api.ApiProvider
 import com.ranhaveshush.mdb.api.ClientFactory
 import com.ranhaveshush.mdb.repository.Repository
 
@@ -22,7 +21,7 @@ object ViewModelFactoryProducer {
     fun of(
         viewModelClass: Class<out ViewModel>,
         repositoryClass: Class<out Repository>,
-        client: ApiClient = ClientFactory.get(ApiProvider.TMDb)
+        client: ApiClient = ClientFactory.default
     ): () -> ViewModelProvider.Factory {
         return { ViewModelFactory(viewModelClass, repositoryClass, client) }
     }

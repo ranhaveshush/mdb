@@ -1,5 +1,7 @@
 package com.ranhaveshush.mdb.ui.fragment
 
-class TopRatedMoviesFragment : MoviesListFragment() {
-    override val moviesList = viewModel.topRatedMovies
+import com.ranhaveshush.mdb.viewmodel.Category
+
+class TopRatedMoviesFragment : MovieCategoryFragment() {
+    override val category: Category = Category.TOP_RATED
 }

@@ -13,5 +13,6 @@ class MovieDetailsRepository(client: ApiClient) : Repository(client) {
     suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> =
         client.getDetails(movieId)
 
-    fun getBackdropUrl(movieDetails: MovieDetails): String = client.getBackdropUrl(movieDetails)
+    fun getBackdropUrl(movieDetails: MovieDetails): String =
+        client.getBackdropUrl(movieDetails)
 }

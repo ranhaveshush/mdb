@@ -8,6 +8,8 @@ import java.util.Locale
  * A factory for [ApiClient] specific implementations.
  */
 object ClientFactory {
+    val default: ApiClient = get(ApiProvider.TMDb)
+
     /**
      * Returns an [ApiClient] specific implementation,
      * dependent on the given [ApiProvider] and [Locale].
@@ -17,7 +19,7 @@ object ClientFactory {
      *
      * @return The requested [ApiClient] for the given [ApiProvider].
      */
-    fun get(provider: ApiProvider, locale: Locale = Locale.getDefault()): ApiClient =
+    private fun get(provider: ApiProvider, locale: Locale = Locale.getDefault()): ApiClient =
         when (provider) {
             ApiProvider.TMDb -> TmdbClient(TmdbApi, locale)
         }

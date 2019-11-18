@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.toLiveData
-import com.ranhaveshush.mdb.repository.MoviesRepository
+import com.ranhaveshush.mdb.repository.HomeRepository
 import com.ranhaveshush.mdb.vo.MovieItem
 
 private const val PAGE_SIZE: Int = 10
@@ -13,7 +13,7 @@ private const val PAGE_SIZE: Int = 10
  * A movies list [ViewModel] implementation.
  * An abstraction layer between the UI and the Model.
  */
-class HomeViewModel(private val repository: MoviesRepository) : ViewModel() {
+class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     val popularMovies = liveData(viewModelScope.coroutineContext) {
         emitSource(repository.getPopular().toLiveData(PAGE_SIZE))
     }
@@ -33,6 +33,6 @@ class HomeViewModel(private val repository: MoviesRepository) : ViewModel() {
      */
     object FactoryProducer {
         fun create() =
-            ViewModelFactoryProducer.of(HomeViewModel::class.java, MoviesRepository::class.java)
+            ViewModelFactoryProducer.of(HomeViewModel::class.java, HomeRepository::class.java)
     }
 }

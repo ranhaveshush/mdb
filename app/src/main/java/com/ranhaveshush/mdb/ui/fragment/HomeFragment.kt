@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
+import com.ranhaveshush.mdb.ui.recyclerview.MarginItemDecoration
 import com.ranhaveshush.mdb.viewmodel.HomeViewModel
 import com.ranhaveshush.mdb.vo.MoviesCategory
 import kotlinx.android.synthetic.main.fragment_home.popular_movies
@@ -67,8 +68,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.getPosterUrl(it)
         }
 
+        val movieItemMargin = resources.getDimension(R.dimen.item_movie_margin).toInt()
+        moviesRecyclerView.addItemDecoration(MarginItemDecoration(movieItemMargin))
         moviesRecyclerView.adapter = MoviesAdapter(posterLoader)
-        category.getLiveMoviesList().observe(this@HomeFragment, Observer {
+
+        category.getLiveMoviesList().observe(viewLifecycleOwner, Observer {
             val adapter = moviesRecyclerView.adapter as MoviesAdapter
             adapter.submitList(it)
         })

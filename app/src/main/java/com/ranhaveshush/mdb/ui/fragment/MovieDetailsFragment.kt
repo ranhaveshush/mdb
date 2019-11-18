@@ -30,7 +30,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             viewModel.getBackdropUrl(it)
         }
 
-        viewModel.getDetails(args.movieId).observe(this@MovieDetailsFragment, Observer {
+        viewModel.getDetails(args.movieId).observe(viewLifecycleOwner, Observer {
             binding.resource = it
 
             val movieDetails = it.data

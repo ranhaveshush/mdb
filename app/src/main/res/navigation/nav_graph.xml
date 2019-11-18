@@ -37,19 +37,19 @@
         android:id="@+id/popular_movies_fragment"
         android:name="com.ranhaveshush.mdb.ui.fragment.PopularMoviesFragment"
         android:label="@string/fragment_popular_movies_title"
-        tools:layout="@layout/fragment_movies_list" />
+        tools:layout="@layout/fragment_movie_category" />
 
     <fragment
         android:id="@+id/top_rated_movies_fragment"
         android:name="com.ranhaveshush.mdb.ui.fragment.TopRatedMoviesFragment"
         android:label="@string/fragment_top_rated_movies_title"
-        tools:layout="@layout/fragment_movies_list" />
+        tools:layout="@layout/fragment_movie_category" />
 
     <fragment
         android:id="@+id/upcoming_movies_fragment"
         android:name="com.ranhaveshush.mdb.ui.fragment.UpcomingMoviesFragment"
         android:label="@string/fragment_upcoming_movies_title"
-        tools:layout="@layout/fragment_movies_list" />
+        tools:layout="@layout/fragment_movie_category" />
 
     <fragment
         android:id="@+id/movie_details_fragment"
