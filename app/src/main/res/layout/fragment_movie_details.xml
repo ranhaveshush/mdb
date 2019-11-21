@@ -37,7 +37,7 @@
                 android:id="@+id/textView_moviesTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#64000000"
+                android:background="@color/movie_details_title_background"
                 android:padding="@dimen/margin_standard"
                 android:text="@{resource.data.title}"
                 android:textColor="@android:color/white"
