@@ -19,7 +19,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/item_movie_width"
         android:layout_height="@dimen/item_movie_height"
-        android:layout_margin="@dimen/margin_small"
         android:background="?attr/selectableItemBackground"
         android:onClick="@{(view) -> movieItemClickListener.onMovieItemClick(view, movieItem)}">
 

@@ -38,11 +38,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/movie_details_title_background"
-                android:padding="@dimen/margin_standard"
+                android:paddingStart="@dimen/padding_standard"
+                android:paddingTop="@dimen/padding_medium"
+                android:paddingEnd="@dimen/padding_standard"
+                android:paddingBottom="@dimen/padding_medium"
                 android:text="@{resource.data.title}"
-                android:textColor="@android:color/white"
-                android:textSize="28sp"
-                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 app:layout_constraintBottom_toBottomOf="@id/imageView_movieBackdrop"
                 app:layout_constraintStart_toStartOf="@id/imageView_movieBackdrop"
                 tools:text="Movie Title" />
@@ -53,7 +54,6 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_standard"
                 android:text="@{resource.toString()}"
-                android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/imageView_movieBackdrop"
                 tools:text="@tools:sample/lorem/random" />
 
