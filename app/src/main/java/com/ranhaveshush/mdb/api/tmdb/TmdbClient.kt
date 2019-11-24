@@ -1,7 +1,5 @@
 package com.ranhaveshush.mdb.api.tmdb
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import androidx.paging.DataSource
 import com.ranhaveshush.mdb.api.ApiClient
 import com.ranhaveshush.mdb.api.tmdb.datasource.PopularMoviesPagedDataSource
@@ -12,7 +10,8 @@ import com.ranhaveshush.mdb.api.tmdb.datasource.UpcomingMoviesPagedDataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
 import com.ranhaveshush.mdb.vo.Resource
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import java.util.Locale
 
 private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/"
@@ -40,26 +39,25 @@ class TmdbClient(
         UpcomingMoviesPagedDataSource.Factory(api, locale)
 
     @Suppress("TooGenericExceptionCaught")
-    override suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> =
-        liveData(Dispatchers.IO) {
-            emit(Resource.loading())
+    override suspend fun getDetails(movieId: Int): Flow<Resource<MovieDetails>> = flow {
+        emit(Resource.loading())
 
-            val resource: Resource<MovieDetails> = try {
-                val response = api.service.getDetails(movieId, locale.country).execute()
-                if (response.isSuccessful) {
-                    val tmdbMovieDetails = response.body()!!
-                    val movieDetails =
-                        TmdbMovieDetailsToMovieDetailsFunction().apply(tmdbMovieDetails)
-                    Resource.success(movieDetails)
-                } else {
-                    Resource.error(response.message())
-                }
-            } catch (e: Exception) {
-                Resource.error(e.localizedMessage!!, e.cause)
+        val resource = try {
+            val response = api.service.getDetails(movieId, locale.country).execute()
+            if (response.isSuccessful) {
+                val tmdbMovieDetails = response.body()!!
+                val movieDetails =
+                    TmdbMovieDetailsToMovieDetailsFunction().apply(tmdbMovieDetails)
+                Resource.success(movieDetails)
+            } else {
+                Resource.error(response.message())
             }
-
-            emit(resource)
+        } catch (e: Exception) {
+            Resource.error<MovieDetails>(e.localizedMessage!!, e.cause)
         }
+
+        emit(resource)
+    }
 
     override fun getPosterUrl(movieItem: MovieItem): String =
         "${IMAGE_BASE_URL}${POSTER_SIZE}${movieItem.posterUrl}"

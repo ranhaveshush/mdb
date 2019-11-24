@@ -5,6 +5,7 @@ import com.ranhaveshush.mdb.api.ApiClient
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
 import com.ranhaveshush.mdb.vo.Resource
+import kotlinx.coroutines.flow.Flow
 
 /**
  * The home repository.
@@ -17,8 +18,7 @@ class HomeRepository(client: ApiClient) : Repository(client) {
 
     fun getUpcoming(): DataSource.Factory<Int, MovieItem> = client.getUpcoming()
 
-    suspend fun getDetails(movieId: Int): Resource<MovieDetails> =
-        client.getDetails(movieId)
+    suspend fun getDetails(movieId: Int): Flow<Resource<MovieDetails>> = client.getDetails(movieId)
 
     fun getPosterUrl(movieItem: MovieItem): String = client.getPosterUrl(movieItem)
 

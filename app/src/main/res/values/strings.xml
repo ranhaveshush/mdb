@@ -13,4 +13,6 @@
     <string name="menu_item_home_title">@string/fragment_home_title</string>
     <string name="menu_item_search_title">@string/fragment_search_title</string>
     <string name="menu_item_favorites_title">@string/fragment_favorites_title</string>
+
+    <string name="search_movies_hint">Search movies</string>
 </resources>

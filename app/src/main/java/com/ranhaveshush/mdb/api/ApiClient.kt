@@ -4,6 +4,7 @@ import androidx.paging.DataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
 import com.ranhaveshush.mdb.vo.Resource
+import kotlinx.coroutines.flow.Flow
 
 /**
  * An API client interface that provides a contract between
@@ -20,7 +21,7 @@ interface ApiClient {
 
     fun getUpcoming(): DataSource.Factory<Int, MovieItem>
 
-    suspend fun getDetails(movieId: Int): Resource<MovieDetails>
+    suspend fun getDetails(movieId: Int): Flow<Resource<MovieDetails>>
 
     fun getPosterUrl(movieItem: MovieItem): String
 

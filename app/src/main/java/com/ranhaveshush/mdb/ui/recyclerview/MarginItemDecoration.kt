@@ -2,7 +2,6 @@ package com.ranhaveshush.mdb.ui.recyclerview
 
 import android.graphics.Rect
 import android.view.View
-import androidx.annotation.IntegerRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
  *
  * Equally sets the recycler view item's margin from all directions.
  */
-class MarginItemDecoration(@IntegerRes private val margin: Int) : RecyclerView.ItemDecoration() {
+class MarginItemDecoration(private val margin: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

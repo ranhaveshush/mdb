@@ -1,21 +1,19 @@
 package com.ranhaveshush.mdb.viewmodel
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
-import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.repository.MovieCategoryRepository
 import com.ranhaveshush.mdb.vo.MovieItem
 
 private const val PAGE_SIZE: Int = 20
 
-enum class Category(@StringRes name: Int) {
-    POPULAR(R.string.fragment_popular_movies_title),
-    TOP_RATED(R.string.fragment_top_rated_movies_title),
-    UPCOMING(R.string.fragment_upcoming_movies_title)
+enum class Category {
+    POPULAR,
+    TOP_RATED,
+    UPCOMING
 }
 
 /**

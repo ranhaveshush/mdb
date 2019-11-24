@@ -1,11 +1,15 @@
 package com.ranhaveshush.mdb.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.paging.toLiveData
 import com.ranhaveshush.mdb.repository.HomeRepository
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
+import com.ranhaveshush.mdb.vo.Resource
+import kotlinx.coroutines.Dispatchers
 
 private const val PAGE_SIZE: Int = 10
 
@@ -26,8 +30,8 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
         emitSource(repository.getUpcoming().toLiveData(PAGE_SIZE))
     }
 
-    fun getMovieDetails(movieId: Int) = liveData {
-        emit(repository.getDetails(movieId))
+    fun getMovieDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData {
+        emitSource(repository.getDetails(movieId).asLiveData(Dispatchers.IO))
     }
 
     fun getPosterUrl(movieItem: MovieItem) = repository.getPosterUrl(movieItem)
