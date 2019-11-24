@@ -4,7 +4,6 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
 import com.ranhaveshush.mdb.R
@@ -25,7 +24,7 @@ enum class Category(@StringRes name: Int) {
  */
 class MovieCategoryViewModel(private val repository: MovieCategoryRepository) : ViewModel() {
     fun getMovies(category: Category): LiveData<PagedList<MovieItem>> =
-        liveData(viewModelScope.coroutineContext) {
+        liveData {
             val dataSource = when (category) {
                 Category.POPULAR -> repository.getPopular()
                 Category.TOP_RATED -> repository.getTopRated()

@@ -3,7 +3,6 @@ package com.ranhaveshush.mdb.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
 import com.ranhaveshush.mdb.repository.MovieDetailsRepository
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.Resource
@@ -13,10 +12,9 @@ import com.ranhaveshush.mdb.vo.Resource
  * An abstraction layer between the UI and the Model.
  */
 class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : ViewModel() {
-    fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> =
-        liveData(viewModelScope.coroutineContext) {
-            emitSource(repository.getDetails(movieId))
-        }
+    fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData {
+        emit(repository.getDetails(movieId))
+    }
 
     fun getBackdropUrl(movieDetails: MovieDetails): String = repository.getBackdropUrl(movieDetails)
 

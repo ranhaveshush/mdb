@@ -27,7 +27,7 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     }
 
     fun getMovieDetails(movieId: Int) = liveData {
-        emitSource(repository.getDetails(movieId))
+        emit(repository.getDetails(movieId))
     }
 
     fun getPosterUrl(movieItem: MovieItem) = repository.getPosterUrl(movieItem)

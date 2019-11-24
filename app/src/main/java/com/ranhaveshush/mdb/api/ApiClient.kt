@@ -1,6 +1,5 @@
 package com.ranhaveshush.mdb.api
 
-import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
@@ -21,7 +20,7 @@ interface ApiClient {
 
     fun getUpcoming(): DataSource.Factory<Int, MovieItem>
 
-    suspend fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>>
+    suspend fun getDetails(movieId: Int): Resource<MovieDetails>
 
     fun getPosterUrl(movieItem: MovieItem): String
 
