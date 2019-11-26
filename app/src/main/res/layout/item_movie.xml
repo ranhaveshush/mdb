@@ -16,18 +16,10 @@
             type="MovieItemClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/imageView_movieThumbnail"
         android:layout_width="@dimen/item_movie_width"
         android:layout_height="@dimen/item_movie_height"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="@{(view) -> movieItemClickListener.onMovieItemClick(view, movieItem)}">
-
-        <ImageView
-            android:id="@+id/imageView_movieThumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@color/item_movie_thumbnail_background" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:onClick="@{(view) -> movieItemClickListener.onMovieItemClick(view, movieItem)}"
+        android:scaleType="centerCrop" />
 </layout>

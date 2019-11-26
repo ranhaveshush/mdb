@@ -9,9 +9,11 @@ import androidx.lifecycle.observe
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
-import com.ranhaveshush.mdb.ui.recyclerview.MarginItemDecoration
+import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
+import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
 import com.ranhaveshush.mdb.viewmodel.SearchViewModel
-import kotlinx.android.synthetic.main.fragment_search.editText_search
+import kotlinx.android.synthetic.main.fragment_search.editText_searchQuery
+import kotlinx.android.synthetic.main.fragment_search.imageView_searchClear
 import kotlinx.android.synthetic.main.fragment_search.recyclerView_movies
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
@@ -24,13 +26,23 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        editText_search.text = null
-        editText_search.addTextChangedListener {
+        viewModel.query.value = null
+
+        editText_searchQuery.addTextChangedListener {
             viewModel.query.value = it
+
+            imageView_searchClear.visibility =
+                if (it.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
         }
 
-        val movieItemMargin = resources.getDimension(R.dimen.item_movie_margin).toInt()
-        recyclerView_movies.addItemDecoration(MarginItemDecoration(movieItemMargin))
+        imageView_searchClear.setOnClickListener {
+            editText_searchQuery.text = null
+        }
+
+        val movieItemWidth = resources.getDimension(R.dimen.item_movie_width).toInt()
+
+        recyclerView_movies.layoutManager = AutoSpanGridLayoutManager(context, movieItemWidth)
+        recyclerView_movies.addItemDecoration(MarginGridItemDecoration(movieItemWidth))
         recyclerView_movies.adapter = moviesAdapter
 
         viewModel.movies.observe(viewLifecycleOwner) {

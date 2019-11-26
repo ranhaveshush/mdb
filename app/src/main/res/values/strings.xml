@@ -15,4 +15,6 @@
     <string name="menu_item_favorites_title">@string/fragment_favorites_title</string>
 
     <string name="search_movies_hint">Search movies</string>
+    <string name="search_icon_content_description">search icon</string>
+    <string name="search_clear_content_description">search clear</string>
 </resources>

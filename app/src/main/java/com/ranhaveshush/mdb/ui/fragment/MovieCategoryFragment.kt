@@ -8,7 +8,8 @@ import androidx.lifecycle.Observer
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
-import com.ranhaveshush.mdb.ui.recyclerview.MarginItemDecoration
+import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
+import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
 import com.ranhaveshush.mdb.viewmodel.Category
 import com.ranhaveshush.mdb.viewmodel.MovieCategoryViewModel
 import kotlinx.android.synthetic.main.fragment_movie_category.recyclerView_movies
@@ -29,8 +30,10 @@ abstract class MovieCategoryFragment : Fragment(R.layout.fragment_movie_category
 
         textView_categoryTitle.text = category.name
 
-        val movieItemMargin = resources.getDimension(R.dimen.item_movie_margin).toInt()
-        recyclerView_movies.addItemDecoration(MarginItemDecoration(movieItemMargin))
+        val movieItemWidth = resources.getDimension(R.dimen.item_movie_width).toInt()
+
+        recyclerView_movies.layoutManager = AutoSpanGridLayoutManager(context, movieItemWidth)
+        recyclerView_movies.addItemDecoration(MarginGridItemDecoration(movieItemWidth))
         recyclerView_movies.adapter = moviesAdapter
 
         val movies = viewModel.getMovies(category)
