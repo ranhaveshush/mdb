@@ -5,13 +5,9 @@
 
     <data>
 
-        <import type="com.ranhaveshush.mdb.vo.Resource" />
-
-        <import type="com.ranhaveshush.mdb.vo.MovieDetails" />
-
         <variable
             name="resource"
-            type="com.ranhaveshush.mdb.vo.Resource&lt;MovieDetails>" />
+            type="com.ranhaveshush.mdb.vo.Resource&lt;com.ranhaveshush.mdb.vo.MovieDetails>" />
     </data>
 
     <ScrollView

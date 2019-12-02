@@ -1,6 +1,5 @@
 package com.ranhaveshush.mdb.viewmodel
 
-import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
@@ -15,7 +14,7 @@ private const val PAGE_SIZE: Int = 20
  * An abstraction layer between the UI and the Model.
  */
 class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
-    val query = MutableLiveData<Editable?>()
+    val query = MutableLiveData<String>()
 
     val movies = query.switchMap {
         if (it.isNullOrEmpty()) {
@@ -27,6 +26,10 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
     }
 
     fun getPosterUrl(movieItem: MovieItem): String = repository.getPosterUrl(movieItem)
+
+    fun clearQuery() {
+        query.value = ""
+    }
 
     /**
      * A singleton object for creating SearchViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].

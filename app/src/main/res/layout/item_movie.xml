@@ -3,17 +3,13 @@
 
     <data>
 
-        <import type="com.ranhaveshush.mdb.vo.MovieItem" />
-
-        <import type="com.ranhaveshush.mdb.ui.adapter.MovieItemClickListener" />
-
         <variable
             name="movieItem"
-            type="MovieItem" />
+            type="com.ranhaveshush.mdb.vo.MovieItem" />
 
         <variable
             name="movieItemClickListener"
-            type="MovieItemClickListener" />
+            type="com.ranhaveshush.mdb.ui.adapter.MovieItemClickListener" />
     </data>
 
     <ImageView

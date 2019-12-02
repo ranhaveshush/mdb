@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
  *
  * Equally sets the recycler view item's margin from all directions.
  */
-class MarginGridItemDecoration(private val itemWidth: Int) : RecyclerView.ItemDecoration() {
+class MarginGridItemDecoration(
+    private val itemWidth: Int,
+    private val screenWidth: Int
+) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -23,7 +26,7 @@ class MarginGridItemDecoration(private val itemWidth: Int) : RecyclerView.ItemDe
         }
 
         val spanCount = layoutManager.spanCount
-        val totalOffset = parent.width - (spanCount * itemWidth)
+        val totalOffset = screenWidth - (spanCount * itemWidth)
         val offsetsCount = spanCount * 2
         val itemOffset = totalOffset / offsetsCount
 
