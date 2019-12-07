@@ -48,7 +48,7 @@ class MovieItemViewHolder(
 object MovieItemClickListener {
     fun onMovieItemClick(view: View, movieItem: MovieItem) {
         val directions =
-            MainNavDirections.actionGlobalMovieDetailsFragment(movieItem.id, movieItem.title)
+            MainNavDirections.actionGlobalMovieDetailsFragment(movieItem.id)
         view.findNavController().navigate(directions)
     }
 }

@@ -1,8 +1,9 @@
 package com.ranhaveshush.mdb.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.switchMap
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
 import com.ranhaveshush.mdb.repository.MovieCategoryRepository
@@ -21,16 +22,15 @@ enum class Category {
  * An abstraction layer between the UI and the Model.
  */
 class MovieCategoryViewModel(private val repository: MovieCategoryRepository) : ViewModel() {
-    fun getMovies(category: Category): LiveData<PagedList<MovieItem>> =
-        liveData {
-            val dataSource = when (category) {
-                Category.POPULAR -> repository.getPopular()
-                Category.TOP_RATED -> repository.getTopRated()
-                Category.UPCOMING -> repository.getUpcoming()
-            }
+    val category = MutableLiveData<Category>()
 
-            emitSource(dataSource.toLiveData(PAGE_SIZE))
-        }
+    val movies: LiveData<PagedList<MovieItem>> = category.switchMap {
+        when (it) {
+            Category.POPULAR -> repository.getPopular()
+            Category.TOP_RATED -> repository.getTopRated()
+            Category.UPCOMING -> repository.getUpcoming()
+        }.toLiveData(PAGE_SIZE)
+    }
 
     fun getPosterUrl(movieItem: MovieItem) = repository.getPosterUrl(movieItem)
 

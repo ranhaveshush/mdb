@@ -59,9 +59,6 @@
         <argument
             android:name="movieId"
             app:argType="integer" />
-        <argument
-            android:name="movieTitle"
-            app:argType="string" />
     </fragment>
 
     <action

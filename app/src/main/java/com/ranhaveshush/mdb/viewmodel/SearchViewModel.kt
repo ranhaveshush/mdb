@@ -9,6 +9,8 @@ import com.ranhaveshush.mdb.vo.MovieItem
 
 private const val PAGE_SIZE: Int = 20
 
+private const val EMPTY_STRING: String = ""
+
 /**
  * A movies list [ViewModel] implementation.
  * An abstraction layer between the UI and the Model.
@@ -28,7 +30,7 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
     fun getPosterUrl(movieItem: MovieItem): String = repository.getPosterUrl(movieItem)
 
     fun clearQuery() {
-        query.value = ""
+        query.value = EMPTY_STRING
     }
 
     /**
