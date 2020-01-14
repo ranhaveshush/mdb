@@ -11,12 +11,13 @@ import com.ranhaveshush.mdb.databinding.FragmentHomeBinding
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.ui.recyclerview.MarginLinearItemDecoration
+import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
-    private val viewModel: HomeViewModel by viewModels(
-        factoryProducer = HomeViewModel.FactoryProducer.create()
-    )
+    private val viewModel: HomeViewModel by viewModels {
+        InjectorUtils.provideHomeViewModelFactory()
+    }
 
     private lateinit var binding: FragmentHomeBinding
 

@@ -13,12 +13,13 @@ import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
 import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
+import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.MovieCategoryViewModel
 
 abstract class MovieCategoryFragment : Fragment(R.layout.fragment_movie_category) {
-    protected val viewModel: MovieCategoryViewModel by viewModels(
-        factoryProducer = MovieCategoryViewModel.FactoryProducer.create()
-    )
+    protected val viewModel: MovieCategoryViewModel by viewModels {
+        InjectorUtils.provideMovieCategoryViewModelFactory()
+    }
 
     private val moviesAdapter: MoviesAdapter =
         MoviesAdapter(MovieItemPosterLoader { viewModel.getPosterUrl(it) })

@@ -9,14 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentMovieDetailsBinding
+import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.MovieDetailsViewModel
 
 class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private val args: MovieDetailsFragmentArgs by navArgs()
 
-    private val viewModel: MovieDetailsViewModel by viewModels(
-        factoryProducer = MovieDetailsViewModel.FactoryProducer.create()
-    )
+    private val viewModel: MovieDetailsViewModel by viewModels {
+        InjectorUtils.provideMovieDetailsViewModelFactory()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

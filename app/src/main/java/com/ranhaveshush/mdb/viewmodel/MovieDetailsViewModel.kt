@@ -19,15 +19,4 @@ class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : Vi
     }
 
     fun getBackdropUrl(movieDetails: MovieDetails): String = repository.getBackdropUrl(movieDetails)
-
-    /**
-     * A singleton object for creating MovieDetailsViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
-     */
-    object FactoryProducer {
-        fun create() =
-            ViewModelFactoryProducer.of(
-                MovieDetailsViewModel::class.java,
-                MovieDetailsRepository::class.java
-            )
-    }
 }

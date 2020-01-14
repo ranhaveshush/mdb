@@ -32,12 +32,4 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
     fun clearQuery() {
         query.value = EMPTY_STRING
     }
-
-    /**
-     * A singleton object for creating SearchViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
-     */
-    object FactoryProducer {
-        fun create() =
-            ViewModelFactoryProducer.of(SearchViewModel::class.java, SearchRepository::class.java)
-    }
 }

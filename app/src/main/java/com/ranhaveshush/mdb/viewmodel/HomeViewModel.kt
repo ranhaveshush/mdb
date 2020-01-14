@@ -48,12 +48,4 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     private fun getMovieDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData {
         emitSource(repository.getDetails(movieId).asLiveData(Dispatchers.IO))
     }
-
-    /**
-     * A singleton object for creating HomeViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
-     */
-    object FactoryProducer {
-        fun create() =
-            ViewModelFactoryProducer.of(HomeViewModel::class.java, HomeRepository::class.java)
-    }
 }

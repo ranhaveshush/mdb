@@ -14,12 +14,13 @@ import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
 import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
+import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
-    private val viewModel: SearchViewModel by viewModels(
-        factoryProducer = SearchViewModel.FactoryProducer.create()
-    )
+    private val viewModel: SearchViewModel by viewModels {
+        InjectorUtils.provideSearchViewModelFactory()
+    }
 
     private val moviesAdapter = MoviesAdapter(MovieItemPosterLoader {
         viewModel.getPosterUrl(it)

@@ -33,14 +33,4 @@ class MovieCategoryViewModel(private val repository: MovieCategoryRepository) : 
     }
 
     fun getPosterUrl(movieItem: MovieItem) = repository.getPosterUrl(movieItem)
-
-    /**
-     * A singleton object for creating MoviesListViewModel [factory][androidx.lifecycle.ViewModelProvider.Factory].
-     */
-    object FactoryProducer {
-        fun create() = ViewModelFactoryProducer.of(
-            MovieCategoryViewModel::class.java,
-            MovieCategoryRepository::class.java
-        )
-    }
 }
