@@ -8,7 +8,7 @@ import com.ranhaveshush.mdb.vo.MovieDetails
  * This [Function] converts [TmdbMovieDetails] data object to [MovieDetails] value object
  * consumed by the UI layer.
  */
-class TmdbMovieDetailsToMovieDetailsFunction : Function<TmdbMovieDetails, MovieDetails> {
+object TmdbMovieDetailsToMovieDetailsFunction : Function<TmdbMovieDetails, MovieDetails> {
     override fun apply(input: TmdbMovieDetails): MovieDetails = MovieDetails(
         input.id,
         input.title,

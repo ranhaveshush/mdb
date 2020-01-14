@@ -12,5 +12,5 @@ data class MovieDetails(
     val status: String,
     val voteAverage: Float,
     val voteCount: Int,
-    val backdropPath: String
+    val backdropPath: String?
 ) : ValueObject

@@ -10,7 +10,7 @@ import com.ranhaveshush.mdb.repository.HomeRepository
 import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.MovieItem
 import com.ranhaveshush.mdb.vo.Resource
-import com.ranhaveshush.mdb.vo.ResourceState
+import com.ranhaveshush.mdb.vo.State
 import kotlinx.coroutines.Dispatchers
 
 private const val FEATURED_MOVIE_ID: Int = 475557
@@ -24,7 +24,7 @@ private const val PAGE_SIZE: Int = 10
 class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     val featuredMovie = getMovieDetails(FEATURED_MOVIE_ID).map {
         when (it.state) {
-            ResourceState.SUCCESS -> it.data
+            State.SUCCESS -> it.data
             else -> null
         }
     }

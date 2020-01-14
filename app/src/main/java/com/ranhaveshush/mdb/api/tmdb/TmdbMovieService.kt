@@ -4,6 +4,7 @@ import com.ranhaveshush.mdb.api.tmdb.data.TmdbConfiguration
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMovieDetails
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMoviesPage
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -72,10 +73,10 @@ interface TmdbMovieService {
      * @return The movie details.
      */
     @GET("movie/{movie_id}")
-    fun getDetails(
+    suspend fun getDetails(
         @Path("movie_id") movieId: Int,
         @Query("language") language: String
-    ): Call<TmdbMovieDetails>
+    ): Response<TmdbMovieDetails>
 
     /**
      * Retrieve the TMDb API system wide configuration information.

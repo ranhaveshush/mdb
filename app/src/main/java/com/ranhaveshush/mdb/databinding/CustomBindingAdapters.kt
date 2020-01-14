@@ -1,4 +1,4 @@
-package com.ranhaveshush.mdb.ui.databinding
+package com.ranhaveshush.mdb.databinding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
