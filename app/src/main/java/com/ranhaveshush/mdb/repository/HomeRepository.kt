@@ -23,12 +23,12 @@ class HomeRepository(client: ApiClient) : Repository(client) {
     fun getUpcoming(): DataSource.Factory<Int, MovieItem> = client.getUpcoming()
 
     suspend fun getDetails(movieId: Int): Flow<Resource<MovieDetails>> = flow {
-        emit(Resource.loading())
+        emit(Resource.loading<MovieDetails>())
 
-        val resource = when (val apiResponse = client.getDetails(movieId)) {
+        val resource: Resource<MovieDetails> = when (val apiResponse = client.getDetails(movieId)) {
             is SuccessApiResponse -> Resource.success(apiResponse.data)
-            is EmptyApiResponse -> Resource.empty()
-            is ErrorApiResponse -> Resource.error(apiResponse.message)
+            is EmptyApiResponse -> Resource.empty<MovieDetails>()
+            is ErrorApiResponse -> Resource.error<MovieDetails>(apiResponse.message)
         }
 
         emit(resource)
