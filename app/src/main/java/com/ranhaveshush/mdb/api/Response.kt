@@ -5,14 +5,14 @@ import retrofit2.Response
 
 fun <T, R> Response<T>.adapt(function: Function<T, R>): Response<R> {
     return if (isSuccessful) {
-        val data = body()
+        val data: T? = body()
         if (data != null) {
             val newData = data.let { function.apply(it) }
-            Response.success<R>(code(), newData)
+            Response.success(code(), newData)
         } else {
             Response.success<R>(code(), null)
         }
     } else {
-        Response.error<R>(code(), errorBody()!!)
+        Response.error(code(), errorBody()!!)
     }
 }
