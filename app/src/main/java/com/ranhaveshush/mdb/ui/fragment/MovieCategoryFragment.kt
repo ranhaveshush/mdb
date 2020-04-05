@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentMovieCategoryBinding
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
-import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
 import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
 import com.ranhaveshush.mdb.util.InjectorUtils
@@ -21,8 +20,7 @@ abstract class MovieCategoryFragment : Fragment(R.layout.fragment_movie_category
         InjectorUtils.provideMovieCategoryViewModelFactory()
     }
 
-    private val moviesAdapter: MoviesAdapter =
-        MoviesAdapter(MovieItemPosterLoader { viewModel.getPosterUrl(it) })
+    private val moviesAdapter: MoviesAdapter = MoviesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,

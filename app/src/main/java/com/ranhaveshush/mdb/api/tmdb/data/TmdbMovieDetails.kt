@@ -14,5 +14,6 @@ data class TmdbMovieDetails(
     @field:Json(name = "status") val status: String,
     @field:Json(name = "vote_average") val voteAverage: Float,
     @field:Json(name = "vote_count") val voteCount: Int,
-    @field:Json(name = "backdrop_path") val backdropPath: String
+    @field:Json(name = "backdrop_path") val backdropPath: String,
+    var backdropUrl: String
 )

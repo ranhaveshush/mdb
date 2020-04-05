@@ -33,8 +33,4 @@ class HomeRepository(client: ApiClient) : Repository(client) {
 
         emit(resource)
     }
-
-    fun getPosterUrl(movieItem: MovieItem): String = client.getPosterUrl(movieItem)
-
-    fun getBackdropUrl(movieDetails: MovieDetails): String = client.getBackdropUrl(movieDetails)
 }

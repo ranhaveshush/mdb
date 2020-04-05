@@ -25,6 +25,4 @@ class MovieDetailsRepository(client: ApiClient) : Repository(client) {
 
         emit(resource)
     }
-
-    fun getBackdropUrl(movieDetails: MovieDetails): String = client.getBackdropUrl(movieDetails)
 }

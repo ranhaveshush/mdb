@@ -35,7 +35,7 @@
                 android:layout_height="250dp"
                 android:contentDescription="@string/movie_image_content_description"
                 android:scaleType="centerCrop"
-                app:imageUrl='@{resource.data != null ? viewmodel.getBackdropUrl(resource.data) : ""}'
+                app:imageUri="@{resource.data.backdrop.uri}"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
 

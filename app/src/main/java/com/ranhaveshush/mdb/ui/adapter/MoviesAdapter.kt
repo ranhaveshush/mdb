@@ -9,16 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ranhaveshush.mdb.MainNavDirections
 import com.ranhaveshush.mdb.databinding.ItemMovieBinding
-import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.vo.MovieItem
 
-class MoviesAdapter(
-    private val posterLoader: MovieItemPosterLoader
-) : PagedListAdapter<MovieItem, MovieItemViewHolder>(MovieItemDiffCallback) {
+class MoviesAdapter : PagedListAdapter<MovieItem, MovieItemViewHolder>(MovieItemDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemMovieBinding.inflate(inflater, parent, false)
-        return MovieItemViewHolder(binding, posterLoader)
+        return MovieItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) {
@@ -28,18 +25,13 @@ class MoviesAdapter(
 }
 
 class MovieItemViewHolder(
-    private val binding: ItemMovieBinding,
-    private val posterLoader: MovieItemPosterLoader
+    private val binding: ItemMovieBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     init {
         binding.movieItemClickListener = MovieItemClickListener
     }
 
     fun bindTo(movieItem: MovieItem?) {
-        if (movieItem != null) {
-            posterLoader.load(movieItem, binding.imageViewMovieThumbnail)
-        }
-
         binding.movieItem = movieItem
         binding.executePendingBindings()
     }

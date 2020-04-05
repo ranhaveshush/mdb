@@ -7,9 +7,9 @@ data class MovieDetails(
     val id: Int,
     val title: String,
     val overview: String,
+    val status: String,
     val releaseDate: MovieReleaseDate,
     val runtime: MovieRuntime,
-    val status: String,
     val vote: MovieVote,
-    val backdropPath: String?
+    val backdrop: MovieBackdrop
 ) : ValueObject

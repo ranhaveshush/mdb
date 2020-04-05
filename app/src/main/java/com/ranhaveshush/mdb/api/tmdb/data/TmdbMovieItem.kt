@@ -10,5 +10,6 @@ data class TmdbMovieItem(
     @field:Json(name = "title") val title: String,
     @field:Json(name = "vote_average") val voteAverage: Float,
     @field:Json(name = "vote_count") val voteCount: Int,
-    @field:Json(name = "poster_path") val posterPath: String
+    @field:Json(name = "poster_path") val posterPath: String,
+    var posterUrl: String
 )

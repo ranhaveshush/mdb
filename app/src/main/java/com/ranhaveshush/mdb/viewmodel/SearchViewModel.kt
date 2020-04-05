@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import androidx.paging.toLiveData
 import com.ranhaveshush.mdb.repository.SearchRepository
-import com.ranhaveshush.mdb.vo.MovieItem
 
 private const val PAGE_SIZE: Int = 20
 
@@ -26,8 +25,6 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
             repository.search(query).toLiveData(PAGE_SIZE)
         }
     }
-
-    fun getPosterUrl(movieItem: MovieItem): String = repository.getPosterUrl(movieItem)
 
     fun clearQuery() {
         query.value = EMPTY_STRING

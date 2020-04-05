@@ -1,8 +1,10 @@
 package com.ranhaveshush.mdb.api.tmdb.datasource
 
 import androidx.annotation.WorkerThread
+import androidx.arch.core.util.Function
 import androidx.paging.DataSource
 import com.ranhaveshush.mdb.api.tmdb.TmdbApi
+import com.ranhaveshush.mdb.api.tmdb.data.TmdbMovieItem
 import com.ranhaveshush.mdb.api.tmdb.data.TmdbMoviesPage
 import com.ranhaveshush.mdb.vo.MovieItem
 
@@ -22,9 +24,10 @@ class SearchMoviesPagedDataSource(
 
     class Factory(
         private val api: TmdbApi,
-        private val query: String
+        private val query: String,
+        private val adapter: Function<TmdbMovieItem, MovieItem>
     ) : DataSource.Factory<Int, MovieItem>() {
         override fun create(): DataSource<Int, MovieItem> =
-            SearchMoviesPagedDataSource(api, query).map(TmdbMovieItemToMovieItemFunction())
+            SearchMoviesPagedDataSource(api, query).map(adapter)
     }
 }

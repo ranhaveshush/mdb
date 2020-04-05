@@ -20,8 +20,4 @@ interface ApiClient {
     fun getUpcoming(): DataSource.Factory<Int, MovieItem>
 
     suspend fun getDetails(movieId: Int): ApiResponse<MovieDetails>
-
-    fun getPosterUrl(movieItem: MovieItem): String
-
-    fun getBackdropUrl(movieDetails: MovieDetails): String
 }

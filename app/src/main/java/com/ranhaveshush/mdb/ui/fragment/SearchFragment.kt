@@ -11,7 +11,6 @@ import androidx.lifecycle.observe
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentSearchBinding
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
-import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
 import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
 import com.ranhaveshush.mdb.util.InjectorUtils
@@ -22,9 +21,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         InjectorUtils.provideSearchViewModelFactory()
     }
 
-    private val moviesAdapter = MoviesAdapter(MovieItemPosterLoader {
-        viewModel.getPosterUrl(it)
-    })
+    private val moviesAdapter = MoviesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,

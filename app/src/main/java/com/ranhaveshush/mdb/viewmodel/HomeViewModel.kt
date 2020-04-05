@@ -8,7 +8,6 @@ import androidx.lifecycle.map
 import androidx.paging.toLiveData
 import com.ranhaveshush.mdb.repository.HomeRepository
 import com.ranhaveshush.mdb.vo.MovieDetails
-import com.ranhaveshush.mdb.vo.MovieItem
 import com.ranhaveshush.mdb.vo.Resource
 import com.ranhaveshush.mdb.vo.State
 import kotlinx.coroutines.Dispatchers
@@ -40,10 +39,6 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     val upcomingMovies = liveData {
         emitSource(repository.getUpcoming().toLiveData(PAGE_SIZE))
     }
-
-    fun getPosterUrl(movieItem: MovieItem) = repository.getPosterUrl(movieItem)
-
-    fun getBackdropUrl(movieDetails: MovieDetails) = repository.getBackdropUrl(movieDetails)
 
     private fun getMovieDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData {
         emitSource(repository.getDetails(movieId).asLiveData(Dispatchers.IO))

@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentHomeBinding
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
-import com.ranhaveshush.mdb.ui.image.MovieItemPosterLoader
 import com.ranhaveshush.mdb.ui.recyclerview.MarginLinearItemDecoration
 import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.HomeViewModel
@@ -45,23 +44,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         val movieItemMargin = resources.getDimension(R.dimen.item_movie_margin).toInt()
-        val posterLoader = MovieItemPosterLoader { viewModel.getPosterUrl(it) }
 
-        binding.popularMovies.recyclerViewMovies.adapter = MoviesAdapter(posterLoader)
+        binding.popularMovies.recyclerViewMovies.adapter = MoviesAdapter()
         binding.popularMovies.recyclerViewMovies.addItemDecoration(
             MarginLinearItemDecoration(
                 movieItemMargin
             )
         )
 
-        binding.topRatedMovies.recyclerViewMovies.adapter = MoviesAdapter(posterLoader)
+        binding.topRatedMovies.recyclerViewMovies.adapter = MoviesAdapter()
         binding.topRatedMovies.recyclerViewMovies.addItemDecoration(
             MarginLinearItemDecoration(
                 movieItemMargin
             )
         )
 
-        binding.upcomingMovies.recyclerViewMovies.adapter = MoviesAdapter(posterLoader)
+        binding.upcomingMovies.recyclerViewMovies.adapter = MoviesAdapter()
         binding.upcomingMovies.recyclerViewMovies.addItemDecoration(
             MarginLinearItemDecoration(
                 movieItemMargin

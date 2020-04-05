@@ -40,7 +40,7 @@
                 android:layout_height="200dp"
                 android:contentDescription="@string/movie_image_content_description"
                 android:scaleType="centerCrop"
-                app:imageUrl='@{viewmodel.featuredMovie != null ? viewmodel.getBackdropUrl(viewmodel.featuredMovie) : ""}'
+                app:imageUri='@{viewmodel.featuredMovie.backdrop.uri}'
                 app:layout_constraintBottom_toTopOf="@+id/popular_movies"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

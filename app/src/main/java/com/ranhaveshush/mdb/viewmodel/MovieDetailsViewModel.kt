@@ -17,6 +17,4 @@ class MovieDetailsViewModel(private val repository: MovieDetailsRepository) : Vi
     fun getDetails(movieId: Int): LiveData<Resource<MovieDetails>> = liveData {
         emitSource(repository.getDetails(movieId).asLiveData(Dispatchers.IO))
     }
-
-    fun getBackdropUrl(movieDetails: MovieDetails): String = repository.getBackdropUrl(movieDetails)
 }

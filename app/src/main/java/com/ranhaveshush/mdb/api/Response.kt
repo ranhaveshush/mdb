@@ -1,8 +1,10 @@
 package com.ranhaveshush.mdb.api
 
-import androidx.arch.core.util.Function
 import retrofit2.Response
 
+/**
+ * Adopts [Response]'s body from type [T] to [R].
+ */
 fun <T, R> Response<T>.adapt(function: Function<T, R>): Response<R> {
     return if (isSuccessful) {
         val data: T? = body()

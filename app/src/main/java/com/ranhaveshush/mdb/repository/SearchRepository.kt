@@ -12,6 +12,4 @@ class SearchRepository(client: ApiClient) : Repository(client) {
     fun search(query: String): DataSource.Factory<Int, MovieItem> = client.search(query)
 
     fun getPopular(): DataSource.Factory<Int, MovieItem> = client.getPopular()
-
-    fun getPosterUrl(movieItem: MovieItem): String = client.getPosterUrl(movieItem)
 }

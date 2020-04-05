@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -17,5 +18,6 @@
         android:layout_width="@dimen/item_movie_width"
         android:layout_height="@dimen/item_movie_height"
         android:onClick="@{(view) -> movieItemClickListener.onMovieItemClick(view, movieItem)}"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        app:imageUri="@{movieItem.poster.uri}" />
 </layout>

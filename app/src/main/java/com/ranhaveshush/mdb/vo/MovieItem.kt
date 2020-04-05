@@ -6,7 +6,5 @@ package com.ranhaveshush.mdb.vo
 data class MovieItem(
     val id: Int,
     val title: String,
-    val voteAverage: Float,
-    val voteCount: Int,
-    val posterUrl: String?
+    val poster: MoviePoster
 ) : ValueObject

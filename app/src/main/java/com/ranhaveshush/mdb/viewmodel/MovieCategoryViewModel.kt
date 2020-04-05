@@ -31,6 +31,4 @@ class MovieCategoryViewModel(private val repository: MovieCategoryRepository) : 
             Category.UPCOMING -> repository.getUpcoming()
         }.toLiveData(PAGE_SIZE)
     }
-
-    fun getPosterUrl(movieItem: MovieItem) = repository.getPosterUrl(movieItem)
 }
