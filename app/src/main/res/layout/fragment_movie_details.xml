@@ -36,34 +36,74 @@
                 android:contentDescription="@string/movie_image_content_description"
                 android:scaleType="centerCrop"
                 app:imageUrl='@{resource.data != null ? viewmodel.getBackdropUrl(resource.data) : ""}'
-                app:layout_constraintBottom_toTopOf="@id/textView_movieDetails"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/movie_title_background"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_movieBackdrop"
+                app:layout_constraintTop_toTopOf="@+id/textView_moviesTitle" />
 
             <TextView
                 android:id="@+id/textView_moviesTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/movie_title_background"
-                android:paddingStart="@dimen/padding_standard"
+                android:layout_marginStart="@dimen/margin_standard"
+                android:layout_marginEnd="@dimen/margin_standard"
+                android:background="@android:color/transparent"
                 android:paddingTop="@dimen/padding_medium"
-                android:paddingEnd="@dimen/padding_standard"
                 android:paddingBottom="@dimen/padding_medium"
                 android:text="@{resource.data.title}"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                app:layout_constraintBottom_toBottomOf="@id/imageView_movieBackdrop"
-                app:layout_constraintStart_toStartOf="@id/imageView_movieBackdrop"
+                app:layout_constraintBottom_toTopOf="@+id/textView_movieReleaseDate"
                 tools:text="Movie Title" />
 
             <TextView
-                android:id="@+id/textView_movieDetails"
+                android:id="@+id/textView_movieReleaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@{resource.data.releaseDate.toString()}"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                app:layout_constraintBottom_toBottomOf="@id/imageView_movieBackdrop"
+                app:layout_constraintStart_toStartOf="@id/textView_moviesTitle"
+                tools:text="2011" />
+
+            <TextView
+                android:id="@+id/textView_movieRuntime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:background="@android:color/transparent"
+                android:text='@{resource.data.runtime.toString()}'
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                app:isGone="@{resource.data.runtime.isEmpty()}"
+                app:layout_constraintBottom_toBottomOf="@id/textView_movieReleaseDate"
+                app:layout_constraintStart_toEndOf="@id/textView_movieReleaseDate"
+                tools:text="1h10m" />
+
+            <TextView
+                android:id="@+id/textView_voteAverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:background="@android:color/transparent"
+                android:text="@{resource.data.vote.toString()}"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                app:layout_constraintBottom_toBottomOf="@id/textView_movieReleaseDate"
+                app:layout_constraintStart_toEndOf="@id/textView_movieRuntime"
+                tools:text="7.1/10" />
+
+            <TextView
+                android:id="@+id/textView_movieOverview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_standard"
-                android:text="@{resource.data.toString()}"
-                app:layout_constraintTop_toBottomOf="@id/imageView_movieBackdrop"
+                android:text="@{resource.data.overview}"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:layout_constraintTop_toBottomOf="@id/textView_movieReleaseDate"
                 tools:text="@tools:sample/lorem/random" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

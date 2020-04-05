@@ -1,5 +1,6 @@
 package com.ranhaveshush.mdb.databinding
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
@@ -8,6 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.vo.MovieItem
+
+@BindingAdapter("isGone")
+fun View.isGone(gone: Boolean) {
+    this.visibility = if (gone) View.GONE else View.VISIBLE
+}
 
 @BindingAdapter("imageUrl")
 fun ImageView.loadImage(url: String) {

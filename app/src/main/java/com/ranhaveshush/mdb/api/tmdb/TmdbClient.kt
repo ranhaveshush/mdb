@@ -39,7 +39,7 @@ class TmdbClient(
 
     override suspend fun getDetails(movieId: Int): ApiResponse<MovieDetails> {
         val response = api.service.getDetails(movieId, locale.language)
-        val adaptedResponse = response.adapt(TmdbMovieDetailsToMovieDetailsFunction)
+        val adaptedResponse = response.adapt(TmdbMovieDetailsToMovieDetailsFunction())
         return ApiResponse.create(adaptedResponse)
     }
 
