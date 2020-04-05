@@ -7,6 +7,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+private const val BASE_URL = BuildConfig.TMDB_API_URL
+
 /**
  * A [TMDb](https://developers.themoviedb.org/3/) client API implementation.
  *
@@ -15,9 +17,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  * TMDb's strong international focus and breadth of data is largely unmatched and something we're incredibly proud of.
  * Put simply, we live and breathe community and that's precisely what makes us different.
  */
-object TmdbApi {
-    private const val BASE_URL = BuildConfig.TMDB_API_URL
-
+class TmdbApi {
     val service = createService(
         HttpUrl.parse(BASE_URL)!!,
         TmdbMovieService::class.java

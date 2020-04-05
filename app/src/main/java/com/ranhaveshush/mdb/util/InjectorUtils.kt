@@ -11,7 +11,7 @@ import com.ranhaveshush.mdb.viewmodel.MovieCategoryViewModelFactory
 import com.ranhaveshush.mdb.viewmodel.MovieDetailsViewModelFactory
 import com.ranhaveshush.mdb.viewmodel.SearchViewModelFactory
 
-object InjectorUtils {
+class InjectorUtils {
     fun provideHomeViewModelFactory() = HomeViewModelFactory(getHomeRepository())
 
     fun provideMovieCategoryViewModelFactory() =
@@ -30,5 +30,5 @@ object InjectorUtils {
 
     private fun getSearchRepository() = SearchRepository(getApiClient())
 
-    private fun getApiClient(): ApiClient = ClientFactory.default
+    private fun getApiClient(): ApiClient = ClientFactory().default
 }

@@ -11,7 +11,7 @@ import com.ranhaveshush.mdb.MainNavDirections
 import com.ranhaveshush.mdb.databinding.ItemMovieBinding
 import com.ranhaveshush.mdb.vo.MovieItem
 
-class MoviesAdapter : PagedListAdapter<MovieItem, MovieItemViewHolder>(MovieItemDiffCallback) {
+class MoviesAdapter : PagedListAdapter<MovieItem, MovieItemViewHolder>(MovieItemDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemMovieBinding.inflate(inflater, parent, false)
@@ -28,7 +28,7 @@ class MovieItemViewHolder(
     private val binding: ItemMovieBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     init {
-        binding.movieItemClickListener = MovieItemClickListener
+        binding.movieItemClickListener = MovieItemClickListener()
     }
 
     fun bindTo(movieItem: MovieItem?) {
@@ -37,7 +37,7 @@ class MovieItemViewHolder(
     }
 }
 
-object MovieItemClickListener {
+class MovieItemClickListener {
     fun onMovieItemClick(view: View, movieItem: MovieItem) {
         val directions =
             MainNavDirections.actionGlobalMovieDetailsFragment(movieItem.id)
@@ -45,7 +45,7 @@ object MovieItemClickListener {
     }
 }
 
-object MovieItemDiffCallback : DiffUtil.ItemCallback<MovieItem>() {
+class MovieItemDiffCallback : DiffUtil.ItemCallback<MovieItem>() {
     override fun areItemsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean =
         oldItem.id == newItem.id
 

@@ -15,7 +15,7 @@ import com.ranhaveshush.mdb.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels {
-        InjectorUtils.provideHomeViewModelFactory()
+        InjectorUtils().provideHomeViewModelFactory()
     }
 
     private lateinit var binding: FragmentHomeBinding

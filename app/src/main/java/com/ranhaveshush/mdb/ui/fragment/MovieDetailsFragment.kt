@@ -16,7 +16,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private val args: MovieDetailsFragmentArgs by navArgs()
 
     private val viewModel: MovieDetailsViewModel by viewModels {
-        InjectorUtils.provideMovieDetailsViewModelFactory()
+        InjectorUtils().provideMovieDetailsViewModelFactory()
     }
 
     override fun onCreateView(

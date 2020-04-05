@@ -18,7 +18,7 @@ import com.ranhaveshush.mdb.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
     private val viewModel: SearchViewModel by viewModels {
-        InjectorUtils.provideSearchViewModelFactory()
+        InjectorUtils().provideSearchViewModelFactory()
     }
 
     private val moviesAdapter = MoviesAdapter()

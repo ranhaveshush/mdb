@@ -17,7 +17,7 @@ import com.ranhaveshush.mdb.viewmodel.MovieCategoryViewModel
 
 abstract class MovieCategoryFragment : Fragment(R.layout.fragment_movie_category) {
     protected val viewModel: MovieCategoryViewModel by viewModels {
-        InjectorUtils.provideMovieCategoryViewModelFactory()
+        InjectorUtils().provideMovieCategoryViewModelFactory()
     }
 
     private val moviesAdapter: MoviesAdapter = MoviesAdapter()
