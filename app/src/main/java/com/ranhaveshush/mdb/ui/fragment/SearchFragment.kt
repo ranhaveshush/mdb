@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import com.ranhaveshush.mdb.App
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentSearchBinding
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
 import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
-import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.SearchViewModel
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
     private val viewModel: SearchViewModel by viewModels {
-        InjectorUtils().provideSearchViewModelFactory()
+        (context?.applicationContext as App).appComponent.searchViewModelFactory()
     }
 
     private val moviesAdapter = MoviesAdapter()

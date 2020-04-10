@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.ranhaveshush.mdb.App
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentHomeBinding
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.recyclerview.MarginLinearItemDecoration
-import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels {
-        InjectorUtils().provideHomeViewModelFactory()
+        (context?.applicationContext as App).appComponent.homeViewModelFactory()
     }
 
     private lateinit var binding: FragmentHomeBinding

@@ -10,12 +10,13 @@ import com.ranhaveshush.mdb.vo.MovieItem
 import com.ranhaveshush.mdb.vo.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
 /**
  * The home repository.
  * An abstraction layer between the movies data sources and the app.
  */
-class HomeRepository(client: ApiClient) : Repository(client) {
+class HomeRepository @Inject constructor(client: ApiClient) : Repository(client) {
     fun getPopular(): DataSource.Factory<Int, MovieItem> = client.getPopular()
 
     fun getTopRated(): DataSource.Factory<Int, MovieItem> = client.getTopRated()

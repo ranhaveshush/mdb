@@ -67,6 +67,9 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:${version_navigation}"
     // AndroidX paging
     implementation "androidx.paging:paging-runtime-ktx:${version_paging}"
+    // Dagger
+    implementation "com.google.dagger:dagger:${version_dagger}"
+    kapt "com.google.dagger:dagger-compiler:${version_dagger}"
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:${version_retrofit}"
     implementation "com.squareup.retrofit2:converter-moshi:${version_retrofit}"

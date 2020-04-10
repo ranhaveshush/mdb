@@ -50,6 +50,9 @@ allprojects {
     ext.version_navigation = '2.3.0-alpha04'
     ext.version_paging = '2.1.2'
 
+    // Dagger
+    ext.version_dagger = '2.27'
+
     // Retrofit
     ext.version_retrofit = '2.8.1'
     ext.version_logging_interceptor = '3.12.3' // Latest version to support API level < 24.

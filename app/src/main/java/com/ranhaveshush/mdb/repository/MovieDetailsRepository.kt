@@ -8,12 +8,13 @@ import com.ranhaveshush.mdb.vo.MovieDetails
 import com.ranhaveshush.mdb.vo.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
 /**
  * The movie details repository.
  * An abstraction layer between the movie details data sources and the app.
  */
-class MovieDetailsRepository(client: ApiClient) : Repository(client) {
+class MovieDetailsRepository @Inject constructor(client: ApiClient) : Repository(client) {
     suspend fun getDetails(movieId: Int): Flow<Resource<MovieDetails>> = flow {
         emit(Resource.loading<MovieDetails>())
 

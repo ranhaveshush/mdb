@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.ranhaveshush.mdb.App
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentMovieCategoryBinding
 import com.ranhaveshush.mdb.ui.adapter.MoviesAdapter
 import com.ranhaveshush.mdb.ui.recyclerview.AutoSpanGridLayoutManager
 import com.ranhaveshush.mdb.ui.recyclerview.MarginGridItemDecoration
-import com.ranhaveshush.mdb.util.InjectorUtils
 import com.ranhaveshush.mdb.viewmodel.MovieCategoryViewModel
 
 abstract class MovieCategoryFragment : Fragment(R.layout.fragment_movie_category) {
     protected val viewModel: MovieCategoryViewModel by viewModels {
-        InjectorUtils().provideMovieCategoryViewModelFactory()
+        (context?.applicationContext as App).appComponent.movieCategoryViewModelFactory()
     }
 
     private val moviesAdapter: MoviesAdapter = MoviesAdapter()
