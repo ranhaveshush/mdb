@@ -3,11 +3,14 @@ package com.ranhaveshush.mdb.api
 import com.ranhaveshush.mdb.api.tmdb.TmdbApi
 import com.ranhaveshush.mdb.api.tmdb.TmdbClient
 import java.util.Locale
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * A factory for [ApiClient] specific implementations.
  */
-class ClientFactory {
+@Singleton
+class ClientFactory @Inject constructor() {
     val default: ApiClient = get(ApiProvider.TMDb)
 
     /**
