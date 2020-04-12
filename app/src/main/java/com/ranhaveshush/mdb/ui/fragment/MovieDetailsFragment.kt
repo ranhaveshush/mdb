@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.ranhaveshush.mdb.App
 import com.ranhaveshush.mdb.R
 import com.ranhaveshush.mdb.databinding.FragmentMovieDetailsBinding
 import com.ranhaveshush.mdb.viewmodel.MovieDetailsViewModel
@@ -16,7 +15,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private val args: MovieDetailsFragmentArgs by navArgs()
 
     private val viewModel: MovieDetailsViewModel by viewModels {
-        (context?.applicationContext as App).appComponent.movieDetailsViewModelFactory()
+        appComponent.movieDetailsViewModelFactory()
     }
 
     override fun onCreateView(
