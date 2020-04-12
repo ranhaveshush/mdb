@@ -43,10 +43,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         )
         binding.recyclerViewMovies.adapter = moviesAdapter
 
-        viewModel.movies.observe(viewLifecycleOwner) {
-            moviesAdapter.submitList(it)
-        }
-
         return binding.root
     }
 
